@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración básica para el navegador y enlace al archivo de estilos visuales -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trivia de Sistemas Premium 🖥️</title>
+  <link rel="stylesheet" href="trivia.css">
+</head>
+<body>
+
+<!-- Contenedor principal estilo tarjeta que agrupa todas las pantallas del juego -->
+<div class="card">
+  
+  <!-- PANTALLA 1: Menú de inicio (visible por defecto gracias a la clase 'active') -->
+  <div id="inicio" class="screen active">
+    <h1>⚡ TRIVIA MUSICAL PRO</h1>
+    <p>Supera este gran desafío de 10 preguntas sobre géneros, boy bands icónicas, electrónica y cultura musical global.</p>
+    <!-- Botón que ejecuta la función comenzar() en JavaScript al hacerle clic -->
+    <button class="btn-primary" onclick="comenzar()">Iniciar Desafío</button>
+  </div>
+
+  <!-- PANTALLA 2: Interfaz de juego (oculta inicialmente) -->
+  <div id="juego" class="screen">
+    <!-- Muestra en qué pregunta vas y tu puntaje actual -->
+    <div class="quiz-header">
+      <span id="info-progreso">Pregunta 1 de 10</span>
+      <span id="info-puntos">0 pts</span>
+    </div>
+    
+    <!-- Barra visual para indicar cuánto falta para terminar -->
+    <div class="progress-container">
+      <div id="barra" class="progress-bar"></div>
+    </div>
+    
+    <!-- Aquí aparecerá el texto de la pregunta -->
+    <h2 id="campo-pregunta">Cargando pregunta...</h2>
+    
+    <!-- Contenedor vacío donde JavaScript inyectará los botones de las respuestas -->
+    <div id="opciones" class="options-grid"></div>
+    
+    <!-- Botón para avanzar, oculto hasta que el jugador elija una respuesta -->
+    <button id="btn-siguiente" class="btn-primary" style="display:none;" onclick="siguiente()">Siguiente pregunta</button>
+  </div>
+
+  <!-- PANTALLA 3: Resultados finales -->
+  <div id="resultado" class="screen">
+    <h1>🎯 Resultados</h1>
+    <div id="score" class="score-badge">0</div>
+    <p id="mensaje-final">¡Buen intento!</p>
+    <button class="btn-primary" onclick="reiniciar()">Intentar de nuevo</button>
+  </div>
+</div>
+
+<!-- Enlace al archivo que contiene la lógica del juego -->
+<script src="trivia.js"></script>
+</body>
+</html>

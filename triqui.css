@@ -1,0 +1,187 @@
+/* Variables maestras: guardamos los colores aquí para reusarlos fácilmente */
+:root {
+    --bg-color: #0f172a;
+    --container-bg: #1e293b;
+    --cell-bg: #334155;
+    --cell-hover: #475569;
+    --text-main: #f8fafc;
+    --color-x: #38bdf8; /* Azul Neón */
+    --color-o: #f43f5e; /* Rosado/Rojo Neón */
+    --color-win: #10b981; /* Verde esmeralda para victoria */
+}
+
+/* Quitamos márgenes por defecto y aseguramos que el borde no aumente el tamaño de la caja */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fondo de pantalla completa centrado */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    padding: 20px;
+}
+
+/* El cuadro gris oscuro que contiene el juego */
+.game-container {
+    background: var(--container-bg);
+    padding: 30px;
+    border-radius: 20px; /* Bordes suaves */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Efecto de sombra */
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+}
+
+/* Letras del título con un degradado en lugar de color plano */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, var(--color-x), var(--color-o));
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; /* Permite ver el degradado de fondo en la letra */
+}
+
+/* Texto del turno */
+.status-turn {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* Resalta la letra específica (X u O) en el turno */
+.status-turn span {
+    font-weight: bold;
+    color: var(--color-x);
+}
+
+/* Alineación horizontal del marcador */
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    gap: 10px; /* Espacio entre los bloques de puntos */
+}
+
+/* Cajitas individuales de puntaje */
+.score-box {
+    background: rgba(255, 255, 255, 0.05); /* Fondo casi transparente */
+    padding: 10px;
+    border-radius: 10px;
+    flex: 1; /* Hacen que todas ocupen el mismo ancho disponible */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Subtítulo pequeño encima de los puntos */
+.score-box .label {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 5px;
+}
+
+/* Número grande del puntaje */
+.score-box .score {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/* Líneas coloridas debajo de cada marcador para identificarlos */
+.player-x { border-bottom: 3px solid var(--color-x); }
+.player-o { border-bottom: 3px solid var(--color-o); }
+.ties { border-bottom: 3px solid #64748b; }
+
+/* El tablero dividido en formato cuadriculado 3x3 */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    gap: 12px;
+    margin: 0 auto 25px auto;
+    aspect-ratio: 1 / 1; /* Fuerza a que siempre se vea cuadrado */
+}
+
+/* Estilos de las casillas vacías */
+.cell {
+    background-color: var(--cell-bg);
+    border-radius: 12px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer; /* Cambia el icono del ratón a la 'manito' */
+    transition: all 0.2s ease-in-out; /* Suaviza los efectos de hover */
+    user-select: none; /* Evita que sombrees la letra por error al hacer clic rápido */
+}
+
+/* Qué ocurre al pasar el ratón si la celda no ha sido clickeada */
+.cell:hover:not(.taken) {
+    background-color: var(--cell-hover);
+    transform: scale(1.05); /* Aumenta levemente el tamaño de la caja */
+}
+
+/* Deshabilita el clic visualmente en celdas ya usadas */
+.cell.taken {
+    cursor: not-allowed;
+}
+
+/* Efecto luminoso para la letra X */
+.cell.x-glow {
+    color: var(--color-x);
+    text-shadow: 0 0 15px var(--color-x);
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Ejecuta la animación para que "brinque" al aparecer */
+}
+
+/* Efecto luminoso para la letra O */
+.cell.o-glow {
+    color: var(--color-o);
+    text-shadow: 0 0 15px var(--color-o);
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Estilo que sobrescribe los demás cuando alguien gana */
+.cell.winner-cell {
+    background-color: var(--color-win) !important; /* Importante para ignorar los colores anteriores */
+    color: white !important;
+    text-shadow: none !important;
+    transform: scale(1.05);
+}
+
+/* Estética general del botón */
+button {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s, transform 0.1s;
+}
+
+/* Al pasar el ratón, hace el botón más oscuro y lo sube */
+button:hover {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    transform: translateY(-2px);
+}
+
+/* Efecto al presionar (hacer clic) */
+button:active {
+    transform: translateY(0);
+}
+
+/* Aquí declaramos la animación que da el efecto de aparición a las letras */
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}

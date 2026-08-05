@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html lang="es"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Palabras en Desorden</title> <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="PD.css" /> </head>
+<body> <div class="bg-grid"></div> <div class="noise"></div> <div class="wrapper"> <header class="header"> <div class="logo-wrap"> <span class="logo-icon">✦</span> <h1 class="logo-title">PALABRAS<br><em>EN DESORDEN</em></h1> </div>
+      <div class="scoreboard"> <div class="score-item"> <span class="score-label">NIVEL</span> <span class="score-val" id="levelDisplay">1</span> </div>
+        <div class="score-divider"></div> <div class="score-item"> <span class="score-label">PUNTOS</span>
+          <span class="score-val" id="scoreDisplay">0</span>
+        </div>
+        <div class="score-divider"></div> <div class="score-item"> <span class="score-label">VIDAS</span>
+          <span class="score-val" id="livesDisplay">❤ ❤ ❤</span> </div>
+      </div>
+    </header>
+
+    <main class="game-area"> <div class="hint-bar"> <span class="hint-icon">💡</span> <p id="hintText">Arrastra o haz clic en las palabras para armar la palabra correcta.</p> </div>
+
+      <section class="word-bank-section"> <p class="section-label">PALABRAS DISPONIBLES</p> <div class="word-bank" id="wordBank"></div> </section>
+
+      <section class="build-section"> <p class="section-label">TU PALABRA</p> <div class="build-zone" id="buildZone"> <span class="build-placeholder" id="buildPlaceholder">Coloca las palabras aquí…</span> </div>
+      </section>
+
+      <div class="action-row"> <button class="btn btn-ghost" onclick="clearBuild()">↺ Limpiar</button> <button class="btn btn-ghost" onclick="useHint()">🔎 Pista (<span id="hintCount">3</span>)</button> <button class="btn btn-primary" onclick="checkAnswer()">Verificar ✓</button> </div>
+
+      <div class="timer-wrap"> <div class="timer-bar-bg"> <div class="timer-bar" id="timerBar"></div> </div>
+        <span class="timer-label" id="timerLabel">30s</span> </div>
+
+    </main>
+
+    <div class="modal-overlay" id="modalOverlay"> <div class="modal"> <div class="modal-icon" id="modalIcon">🎉</div> <h2 class="modal-title" id="modalTitle">¡Correcto!</h2> <p class="modal-body" id="modalBody"></p> <p class="modal-answer" id="modalAnswer"></p> <button class="btn btn-primary" onclick="nextRound()">Siguiente →</button> </div>
+    </div>
+
+    <div class="modal-overlay" id="gameOverOverlay"> <div class="modal"> <div class="modal-icon">💀</div> <h2 class="modal-title" style="color:var(--accent2)">Juego Terminado</h2> <p class="modal-body" id="gameOverMsg"></p> <p class="modal-score-final">Puntaje final: <strong id="finalScore">0</strong></p> <button class="btn btn-primary" onclick="restartGame()">Jugar de nuevo ↺</button> </div>
+    </div>
+
+  </div>
+
+  <script src="PD.js"></script> </body>
+</html>

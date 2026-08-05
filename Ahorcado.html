@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado Pro Edition</title>
+    <link rel="stylesheet" href="ahorcado.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="game-wrapper">
+        <div class="game-container" id="juego">
+            <h1 class="glitch-title">AHORCADO <span class="edition">PRO</span></h1>
+            
+            <div class="marcador">
+                <div class="stat-box">
+                    <span class="stat-label"><i class="fa-solid fa-trophy"></i> Ganadas</span>
+                    <span class="stat-num" id="ganadas">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label"><i class="fa-solid fa-skull"></i> Perdidas</span>
+                    <span class="stat-num" id="perdidas">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label"><i class="fa-solid fa-fire"></i> Racha</span>
+                    <span class="stat-num" id="racha">0</span>
+                </div>
+            </div>
+
+            <div class="categoria-container">
+                <span class="lbl-cat">Pista de categoría</span>
+                <div class="categoria-badge" id="categoria-texto">-</div>
+            </div>
+
+            <div class="canvas-wrapper" id="canvasBox">
+                <canvas id="lienzo" width="260" height="260"></canvas>
+            </div>
+
+            <div class="palabra-display" id="palabraDisplay"></div>
+
+            <div class="discard-container">
+                <span class="discard-title">Descartadas:</span>
+                <span id="listaIncorrectas" class="discard-list">Ninguna</span>
+            </div>
+
+            <div class="teclado" id="teclado"></div>
+
+            <button id="btnReiniciar" class="btn-primary">
+                <i class="fa-solid fa-rotate-right"></i> Generar Palabra
+            </button>
+        </div>
+    </div>
+
+    <div class="modal" id="modalResultado">
+        <div class="modal-content">
+            <div class="modal-icon" id="modalIcon">🎉</div>
+            <h2 id="modalTitulo">¡Victoria!</h2>
+            <p id="modalMensaje">Descifraste el código oculto de forma exitosa.</p>
+            <button id="btnModalSiguiente" class="btn-modal">Siguiente Turno</button>
+        </div>
+    </div>
+
+    <script src="ahorcado.js"></script>
+</body>
+</html>
