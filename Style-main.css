@@ -1,274 +1,274 @@
-:root { /* Selector que almacena variables globales disponibles para todo el documento */
-    --bg-dark: #050810; /* Variable para el color de fondo principal (azul muy oscuro) */
-    --nav-bg: rgba(5, 8, 16, 0.85); /* Variable para el fondo de la barra de navegación (con 85% de opacidad) */
-    --primary: #00f0ff; /* Variable para el color neón principal (cyan) */
-    --secondary: #ff0055; /* Variable para el color secundario (magenta) */
-    --tertiary: #a855f7; /* Variable para el color terciario (púrpura) */
-    --text-light: #f1f5f9; /* Variable para el color del texto general (blanco grisáceo) */
-    --card-bg: #0b1120; /* Variable para el fondo de las tarjetas de los juegos */
+:root {
+    --bg-dark: #050810;
+    --nav-bg: rgba(5, 8, 16, 0.85);
+    --primary: #00f0ff;
+    --secondary: #ff0055;
+    --tertiary: #a855f7;
+    --text-light: #f1f5f9;
+    --card-bg: #0b1120;
 }
 
-* { /* Selector universal: aplica estos estilos a todos los elementos del HTML */
-    margin: 0; /* Elimina los márgenes exteriores por defecto del navegador */
-    padding: 0; /* Elimina los rellenos interiores por defecto */
-    box-sizing: border-box; /* Asegura que el tamaño de las cajas incluya bordes y rellenos sin deformarse */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Establece la fuente principal y sus alternativas en caso de no estar instaladas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body { /* Aplica estilos directamente a la etiqueta body */
-    background-color: var(--bg-dark); /* Llama a la variable del fondo oscuro */
-    color: var(--text-light); /* Llama a la variable de texto claro para toda la página */
-    overflow-x: hidden; /* Evita que aparezca una barra de desplazamiento horizontal si un elemento se sale del ancho */
-    position: relative; /* Establece un contexto de posicionamiento para los elementos hijos que tengan posición absoluta */
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+    position: relative;
 }
 
 /* --- FONDO ANIMADO --- */
-.bg-animation { /* Clase para el contenedor de las luces de fondo */
-    position: fixed; /* Lo ancla a la pantalla, haciendo que no se mueva al hacer scroll */
-    top: 0; left: 0; width: 100vw; height: 100vh; /* Lo estira para cubrir el 100% del ancho y alto visible (viewport) */
-    z-index: -1; /* Lo envía detrás de todo el contenido de la página */
-    overflow: hidden; /* Oculta cualquier luz que se salga de los límites de la pantalla */
+.bg-animation {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    overflow: hidden;
 }
-.orb { /* Estilos base para todas las esferas de luz */
-    position: absolute; /* Permite mover libremente la esfera dentro de su contenedor (usando top/left) */
-    border-radius: 50%; /* Convierte la caja cuadrada en un círculo perfecto */
-    filter: blur(80px); /* Difumina masivamente el elemento creando el efecto de "resplandor" */
-    opacity: 0.4; /* Hace la luz semitransparente (40% de visibilidad) */
-    animation: moveOrbs 10s infinite alternate ease-in-out; /* Aplica una animación que dura 10s, se repite infinitamente, va y viene, con velocidad suave al inicio y final */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: moveOrbs 10s infinite alternate ease-in-out;
 }
-.orb-1 { width: 300px; height: 300px; background: var(--primary); top: 10%; left: 10%; } /* Asigna tamaño, color cyan y posiciona esta esfera arriba a la izquierda */
-.orb-2 { width: 400px; height: 400px; background: var(--tertiary); bottom: 10%; right: 10%; animation-delay: -2s; } /* Esfera púrpura, posicionada abajo a la derecha, la animación empieza adelantada por 2 segundos */
-.orb-3 { width: 250px; height: 250px; background: var(--secondary); top: 50%; left: 50%; animation-duration: 15s; } /* Esfera magenta, centrada, y cambia la duración de la animación a 15s para que se mueva distinto a las demás */
+.orb-1 { width: 300px; height: 300px; background: var(--primary); top: 10%; left: 10%; }
+.orb-2 { width: 400px; height: 400px; background: var(--tertiary); bottom: 10%; right: 10%; animation-delay: -2s; }
+.orb-3 { width: 250px; height: 250px; background: var(--secondary); top: 50%; left: 50%; animation-duration: 15s; }
 
-@keyframes moveOrbs { /* Define la trayectoria de la animación de las esferas */
-    0% { transform: translate(0, 0) scale(1); } /* Estado inicial: posición original y tamaño normal */
-    100% { transform: translate(50px, -50px) scale(1.2); } /* Estado final: se mueve 50px en diagonal y crece un 20% */
+@keyframes moveOrbs {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, -50px) scale(1.2); }
 }
 
 /* --- NAVEGACIÓN --- */
-.navbar { /* Estilos de la barra de navegación */
-    position: fixed; /* Fija la barra en la pantalla incluso al hacer scroll down */
-    top: 0; width: 100%; /* La ubica pegada arriba y ocupando todo el ancho */
-    background: var(--nav-bg); /* Llama al color de fondo semitransparente */
-    backdrop-filter: blur(15px); /* Desenfoque de fondo para dar apariencia de cristal o vidrio esmerilado */
-    display: flex; /* Activa Flexbox para alinear elementos fácilmente */
-    justify-content: space-between; /* Empuja el logo a la izquierda y los enlaces a la derecha */
-    align-items: center; /* Centra los elementos verticalmente dentro de la barra */
-    padding: 1.2rem 5%; /* Da espacio interior: 1.2rem arriba/abajo, y 5% a los lados para no pegarse a los bordes de la pantalla */
-    z-index: 1000; /* Asegura que la barra siempre esté por encima de las luces y el texto */
-    border-bottom: 1px solid rgba(0, 240, 255, 0.2); /* Línea divisoria muy tenue debajo de la barra */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Sombra oscura que da profundidad debajo del menú */
+.navbar {
+    position: fixed;
+    top: 0; width: 100%;
+    background: var(--nav-bg);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
-.logo { /* Estilo para el contenedor del nombre de la marca */
-    font-size: 1.8rem; /* Tamaño de texto relativamente grande */
-    font-weight: 900; /* Texto muy grueso (extra bold) */
-    color: #fff; /* Color blanco puro */
-    letter-spacing: 2px; /* Separación extra entre cada letra */
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 2px;
 }
-.logo span { color: var(--primary); } /* Pinta la palabra "SYNERGY" de cyan puro */
-.logo i { color: var(--primary); margin-right: 10px; animation: pulseIcon 2s infinite; } /* Pinta el icono de cyan, lo separa del texto 10px y le aplica una animación de pulso infinito */
+.logo span { color: var(--primary); }
+.logo i { color: var(--primary); margin-right: 10px; animation: pulseIcon 2s infinite; }
 
-.nav-links { list-style: none; display: flex; gap: 2rem; } /* Quita las viñetas de la lista, activa Flexbox y separa cada enlace por 2rem */
-.nav-links a { /* Estilo de los enlaces del menú */
-    color: #cbd5e1; /* Color gris azulado claro */
-    text-decoration: none; /* Elimina el subrayado clásico de los hipervínculos */
-    font-weight: bold; /* Texto en negrita */
-    text-transform: uppercase; /* Convierte todas las letras a mayúsculas automáticamente */
-    font-size: 0.9rem; /* Tamaño de texto ligeramente pequeño */
-    letter-spacing: 1px; /* Separación de las letras */
-    transition: 0.3s; /* Hace que cualquier cambio (como pasar el mouse) tome 0.3 segundos y sea suave */
+.nav-links { list-style: none; display: flex; gap: 2rem; }
+.nav-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: 0.3s;
 }
-.nav-links a:hover { /* Estilo que se activa al pasar el ratón por el enlace */
-    color: var(--primary); /* Cambia el color a cyan */
-    text-shadow: 0 0 10px var(--primary); /* Agrega un brillo cyan detrás del texto */
+.nav-links a:hover {
+    color: var(--primary);
+    text-shadow: 0 0 10px var(--primary);
 }
 
 /* --- SECCIÓN HERO --- */
-.hero-section { /* Contenedor principal de la pantalla de bienvenida */
-    padding: 160px 5% 100px; /* Relleno masivo arriba (para evitar que la barra fija lo tape), lados del 5%, e inferior de 100px */
-    display: flex; /* Activa Flexbox para poner texto a la izquierda y gráfico a la derecha */
-    align-items: center; /* Los alinea al centro verticalmente */
-    justify-content: space-between; /* Los separa equitativamente */
-    min-height: 90vh; /* La sección ocupará como mínimo el 90% del alto de la pantalla visible */
+.hero-section {
+    padding: 160px 5% 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 90vh;
 }
-.hero-content { max-width: 650px; } /* Limita el ancho del texto para que no invada la imagen de la derecha */
-.badge { /* Insignia "Proyecto Destacado" */
-    background: rgba(255, 0, 85, 0.1); /* Fondo magenta muy transparente */
-    color: var(--secondary); /* Texto magenta */
-    padding: 8px 15px; /* Relleno interno */
-    border-radius: 20px; /* Bordes totalmente redondeados tipo píldora */
-    font-weight: bold; /* Texto grueso */
-    font-size: 0.9rem; /* Tamaño de letra */
-    border: 1px solid var(--secondary); /* Borde magenta de 1px */
-    display: inline-block; /* Se comporta como un bloque en línea para aceptar padding y margins */
-    margin-bottom: 25px; /* Empuja el título grande hacia abajo */
-    box-shadow: 0 0 15px rgba(255, 0, 85, 0.3); /* Resplandor magenta suave alrededor de la píldora */
+.hero-content { max-width: 650px; }
+.badge {
+    background: rgba(255, 0, 85, 0.1);
+    color: var(--secondary);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 1px solid var(--secondary);
+    display: inline-block;
+    margin-bottom: 25px;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.3);
 }
 
 /* ANIMACIÓN GLITCH PARA EL TÍTULO */
-.glitch-title { /* Título principal de la web */
-    font-size: 4.5rem; /* Tamaño gigantesco */
-    line-height: 1.1; /* Reduce el interlineado para que las dos líneas estén pegadas */
-    margin-bottom: 20px; /* Separación con el párrafo inferior */
-    font-weight: 900; /* Grosor máximo */
-    color: #fff; /* Color blanco */
-    position: relative; /* Necesario por si hay seudo-elementos absolutos después */
-    text-transform: uppercase; /* Todo en mayúsculas */
+.glitch-title {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 900;
+    color: #fff;
+    position: relative;
+    text-transform: uppercase;
 }
-.glitch-title .highlight { /* Palabra envuelta en el span */
-    color: transparent; /* Hace el relleno de la letra invisible */
-    -webkit-text-stroke: 2px var(--primary); /* Solo para navegadores webkit: Pinta el contorno de la letra de cyan */
-    text-shadow: 0 0 15px rgba(0, 240, 255, 0.5); /* Agrega un brillo exterior */
-    animation: flicker 3s infinite; /* Aplica una animación de parpadeo de luz estropeada */
-}
-
-@keyframes flicker { /* Define exactamente los fotogramas del parpadeo (glitch/flicker) */
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { text-shadow: 0 0 15px rgba(0, 240, 255, 0.5); opacity: 1; } /* En estos porcentajes de tiempo, la luz está encendida a su 100% */
-    20%, 22%, 24%, 55% { text-shadow: none; opacity: 0.5; } /* En estos breves picos, la luz se atenúa y pierde su brillo, creando el parpadeo */
+.glitch-title .highlight {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--primary);
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+    animation: flicker 3s infinite;
 }
 
-.hero-content p { /* Párrafo principal de descripción */
-    font-size: 1.2rem; /* Texto legible pero un poco más grande del estándar */
-    color: #94a3b8; /* Gris azulado medio */
-    margin-bottom: 40px; /* Margen inferior para alejar el botón */
-    line-height: 1.7; /* Aumenta la altura de las líneas haciendo el párrafo más fácil de leer */
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { text-shadow: 0 0 15px rgba(0, 240, 255, 0.5); opacity: 1; }
+    20%, 22%, 24%, 55% { text-shadow: none; opacity: 0.5; }
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin-bottom: 40px;
+    line-height: 1.7;
 }
 
 /* BOTÓN NEÓN PRINCIPAL */
-.btn-play-main { /* Estilos del botón principal "Jugar Ahora" */
-    display: inline-block; /* Permite aplicar márgenes y tamaño al enlace */
-    background: transparent; /* Fondo hueco para que se vea la página */
-    color: var(--primary); /* Texto cyan */
-    padding: 15px 40px; /* Relleno amplio para hacer un botón grande */
-    font-size: 1.2rem; /* Tamaño de letra del botón */
-    font-weight: 900; /* Texto súper grueso */
-    text-decoration: none; /* Quita subrayado del enlace */
-    border-radius: 5px; /* Bordes ligeramente redondeados */
-    border: 2px solid var(--primary); /* Borde cyan grueso */
-    position: relative; /* Contexto de posicionamiento */
-    overflow: hidden; /* Corta cualquier efecto que salga de la caja del botón */
-    transition: 0.3s; /* Transición suave de 0.3s */
-    text-transform: uppercase; /* Letras mayúsculas */
-    letter-spacing: 2px; /* Separación de letras */
+.btn-play-main {
+    display: inline-block;
+    background: transparent;
+    color: var(--primary);
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
-.btn-play-main:hover { /* Efecto al pasar el ratón */
-    background: var(--primary); /* El botón se rellena completamente de color cyan */
-    color: #000; /* El texto se vuelve negro para generar alto contraste */
-    box-shadow: 0 0 30px var(--primary), inset 0 0 10px #000; /* Doble sombra: un resplandor fuerte exterior y una sombra oscura interior */
-    transform: scale(1.05); /* Hace crecer el botón un 5% */
+.btn-play-main:hover {
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 30px var(--primary), inset 0 0 10px #000;
+    transform: scale(1.05);
 }
 .glow-button {
-    animation: pulseBorder 2s infinite alternate; /* Clase extra para hacer que el botón emita pulsos de luz mientras nadie lo toca */
+    animation: pulseBorder 2s infinite alternate;
 }
-@keyframes pulseBorder { /* Define el pulso de luz del botón */
-    0% { box-shadow: 0 0 10px rgba(0, 240, 255, 0.2); } /* Brillo inicial débil */
-    100% { box-shadow: 0 0 25px rgba(0, 240, 255, 0.6); } /* Brillo fuerte, luego se devuelve (alternate) */
+@keyframes pulseBorder {
+    0% { box-shadow: 0 0 10px rgba(0, 240, 255, 0.2); }
+    100% { box-shadow: 0 0 25px rgba(0, 240, 255, 0.6); }
 }
 
 /* IMAGEN FLOTANTE */
-.hologram-box { /* Decoración circular a la derecha */
-    width: 350px; height: 350px; /* Crea un cuadrado perfecto grande */
-    border: 2px dashed rgba(0, 240, 255, 0.3); /* Borde de líneas intermitentes (dashed) */
-    border-radius: 50%; /* Vuelve el cuadrado un círculo perfecto */
-    display: flex; justify-content: center; align-items: center; /* Flexbox para centrar el icono de cubos justo en el medio */
-    font-size: 9rem; color: var(--primary); /* Hace el icono gigantesco y de color cyan */
-    box-shadow: inset 0 0 60px rgba(0, 240, 255, 0.1), 0 0 40px rgba(0, 240, 255, 0.1); /* Sombra interna y externa para dar la ilusión de volumen 3D u holograma */
+.hologram-box {
+    width: 350px; height: 350px;
+    border: 2px dashed rgba(0, 240, 255, 0.3);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 9rem; color: var(--primary);
+    box-shadow: inset 0 0 60px rgba(0, 240, 255, 0.1), 0 0 40px rgba(0, 240, 255, 0.1);
 }
-.float-anim { animation: floatBox 4s ease-in-out infinite; } /* Asigna una animación de flotación al contenedor externo */
-@keyframes floatBox { /* Define el movimiento de flotación */
-    0%, 100% { transform: translateY(0) rotate(0deg); } /* Posición base */
-    50% { transform: translateY(-25px) rotate(5deg); } /* Sube 25px y gira levemente 5 grados a la mitad del tiempo, creando un efecto pendular/flotante */
+.float-anim { animation: floatBox 4s ease-in-out infinite; }
+@keyframes floatBox {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-25px) rotate(5deg); }
 }
 
 /* --- SECCIÓN TARJETAS (MINIJUEGOS) --- */
-.games-section { padding: 50px 5% 100px; position: relative; z-index: 2; } /* Define rellenos para la sección completa de juegos y asegura que esté sobre el fondo */
-.section-title { text-align: center; margin-bottom: 60px; } /* Centra los títulos de la sección y los aleja de las tarjetas */
-.section-title h2 { font-size: 2.8rem; text-transform: uppercase; } /* Tamaño masivo para el título de la sección */
-.section-title span { color: var(--primary); } /* Pinta la palabra "Minijuegos" en cyan */
-.section-title p { color: #94a3b8; margin-top: 10px; font-size: 1.1rem; } /* Párrafo subtítulo en gris claro */
+.games-section { padding: 50px 5% 100px; position: relative; z-index: 2; }
+.section-title { text-align: center; margin-bottom: 60px; }
+.section-title h2 { font-size: 2.8rem; text-transform: uppercase; }
+.section-title span { color: var(--primary); }
+.section-title p { color: #94a3b8; margin-top: 10px; font-size: 1.1rem; }
 
-.cards-grid { /* Contenedor general de las tarjetas */
-    display: grid; /* Activa la tecnología Grid para hacer una cuadrícula estructurada */
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Fórmula mágica de Grid: Crea columnas que se adaptan automáticamente. Cada tarjeta mide mínimo 260px; si hay más espacio en pantalla, toman 1 fracción de ese sobrante equitativamente */
-    gap: 30px; /* Crea un hueco de 30px entre cada tarjeta */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
 }
-.game-card { /* Tarjeta individual contenedora de un minijuego */
-    background: var(--card-bg); /* Fondo sólido muy oscuro */
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Borde sutil blanco de bajísima opacidad */
-    border-radius: 15px; /* Bordes redondeados */
-    padding: 40px 20px; /* Relleno interior para respirar (superior/inferior, costados) */
-    text-decoration: none; /* Elimina subrayado al ser un enlace (a) */
-    color: #fff; /* Texto blanco por defecto */
-    text-align: center; /* Todo el texto centrado */
-    transition: 0.4s; /* Transición muy fluida para efectos hover */
-    position: relative; /* Contexto de posicionamiento para efectos internos */
-    overflow: hidden; /* Evita que los destellos se salgan de los bordes redondeados */
-    z-index: 1; /* Nivel de profundidad base para la tarjeta */
+.game-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
-.card-glow-bg { /* Elemento responsable de crear el círculo de luz de fondo en hover */
-    position: absolute; /* Anclaje absoluto relativo a .game-card */
-    top: 50%; left: 50%; /* Se posiciona en el centro geométrico exacto de la tarjeta */
-    width: 0; height: 0; /* Inicia sin tamaño, por ende es invisible */
-    background: radial-gradient(circle, rgba(0,240,255,0.2) 0%, transparent 70%); /* Pinta un degradado radial, donde el centro es cyan y el borde es transparente */
-    transform: translate(-50%, -50%); /* Corrige el eje para centrar el div verdaderamente (50% de sí mismo) */
-    transition: width 0.5s, height 0.5s; /* Anima el cambio de tamaño para que crezca progresivamente */
-    z-index: -1; /* Lo pone por debajo del icono y los textos dentro de la tarjeta */
-    border-radius: 50%; /* Mantiene la luz de forma circular */
+.card-glow-bg {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: radial-gradient(circle, rgba(0,240,255,0.2) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+    z-index: -1;
+    border-radius: 50%;
 }
-.game-card:hover { /* Qué pasa con la tarjeta al poner el ratón encima */
-    transform: translateY(-15px); /* La tarjeta levita o se eleva 15px hacia arriba */
-    border-color: var(--primary); /* El borde pálido se enciende en cyan */
-    box-shadow: 0 10px 40px rgba(0, 240, 255, 0.2); /* Suelta un resplandor masivo cyan por debajo */
+.game-card:hover {
+    transform: translateY(-15px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 40px rgba(0, 240, 255, 0.2);
 }
-.game-card:hover .card-glow-bg { width: 300px; height: 300px; } /* Al hacer hover sobre la tarjeta, su destello interior crece abruptamente a 300x300 iluminando todo */
+.game-card:hover .card-glow-bg { width: 300px; height: 300px; }
 
-.card-icon { /* Estilos de la caja del ícono del juego */
-    font-size: 3.5rem; /* Tamaño de letra enorme */
-    margin-bottom: 25px; /* Empuja el título del juego hacia abajo */
-    height: 90px; width: 90px; /* Hace que el contenedor forme una caja cuadrada perfecta */
-    line-height: 90px; /* Centra el ícono verticalmente dentro de la caja de 90px */
-    border-radius: 20%; /* Redondea un poco el cuadrado sin llegar a círculo (squircle) */
-    margin: 0 auto 25px; /* Truco de margin para centrar elementos de bloque: auto a los lados */
-    background: rgba(255,255,255,0.02); /* Fondo gris translúcido sutil para el botón contenedor del icono */
-    transition: 0.3s; /* Transición para efecto físico */
+.card-icon {
+    font-size: 3.5rem;
+    margin-bottom: 25px;
+    height: 90px; width: 90px;
+    line-height: 90px;
+    border-radius: 20%;
+    margin: 0 auto 25px;
+    background: rgba(255,255,255,0.02);
+    transition: 0.3s;
 }
-.game-card:hover .card-icon { transform: scale(1.1) rotate(5deg); } /* Al hacer hover en la tarjeta, el icono crece un 10% y se inclina de forma traviesa */
+.game-card:hover .card-icon { transform: scale(1.1) rotate(5deg); }
 
-.ahorcado-icon { color: var(--secondary); box-shadow: inset 0 0 20px rgba(255, 0, 85, 0.1); } /* Estilos específicos del Ahorcado: Icono color magenta y luz interior magenta */
-.tic-icon { color: #39ff14; box-shadow: inset 0 0 20px rgba(57, 255, 20, 0.1); } /* Estilos específicos Triqui: Verde tóxico y luz interior verde */
-.trivia-icon { color: var(--tertiary); box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.1); } /* Estilos específicos Trivia: Color púrpura y luz púrpura */
+.ahorcado-icon { color: var(--secondary); box-shadow: inset 0 0 20px rgba(255, 0, 85, 0.1); }
+.tic-icon { color: #39ff14; box-shadow: inset 0 0 20px rgba(57, 255, 20, 0.1); }
+.trivia-icon { color: var(--tertiary); box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.1); }
 
-.game-card h3 { font-size: 1.6rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; } /* Estilos para el nombre del juego: mayúsculas, tamaño grande */
-.game-card p { font-size: 0.95rem; color: #94a3b8; margin-bottom: 30px; line-height: 1.5; } /* Estilos de la descripción: fuente pequeña y grisácea */
+.game-card h3 { font-size: 1.6rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+.game-card p { font-size: 0.95rem; color: #94a3b8; margin-bottom: 30px; line-height: 1.5; }
 
-.play-tag { /* Estilos del "Iniciar Módulo" */
-    font-weight: bold; /* Negrita */
-    color: var(--primary); /* Texto cyan */
-    font-size: 1rem; /* Tamaño normal */
-    opacity: 0; /* Es completamente INVISIBLE por defecto */
-    transition: 0.4s; /* Transición suave */
-    transform: translateY(20px); /* Está 20px más abajo de su posición normal por defecto */
-    display: inline-block; /* Soporta margins/transformaciones */
-    text-transform: uppercase; /* Mayúsculas */
-    letter-spacing: 1px; /* Espaciado ligero */
+.play-tag {
+    font-weight: bold;
+    color: var(--primary);
+    font-size: 1rem;
+    opacity: 0;
+    transition: 0.4s;
+    transform: translateY(20px);
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
-.game-card:hover .play-tag { opacity: 1; transform: translateY(0); } /* Al pasar el ratón a la tarjeta, se vuelve 100% visible y "sube" de regreso a su posición original (animación de entrada) */
+.game-card:hover .play-tag { opacity: 1; transform: translateY(0); }
 
-footer { /* Configuración para la barra final de la página */
-    text-align: center; padding: 30px; background: #03050a; color: #475569; /* Fondo súper negro, texto gris apagado, padding amplio */
-    border-top: 1px solid rgba(0, 240, 255, 0.1); font-weight: bold; /* Delimita el footer con una raya cyan muy tenue arriba */
+footer {
+    text-align: center; padding: 30px; background: #03050a; color: #475569;
+    border-top: 1px solid rgba(0, 240, 255, 0.1); font-weight: bold;
 }
 
 /* --- CLASES DE ENTRADA AL CARGAR LA PÁGINA --- */
-.slide-down { animation: slideDown 1s cubic-bezier(0.2, 0.8, 0.2, 1); } /* Animación aplicada al Menú. Usa una curva de Bézier (física) para caer rápido y frenar muy suave */
-.fade-up { animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) both; } /* Animación aplicada al Hero y Minijuegos. 'both' mantiene los estilos del último frame de la animación */
-.delay-1 { animation-delay: 0.3s; } /* Clase de apoyo que retrasa el arranque de la animación. Usado en la sección Minijuegos para que cargue DESPUÉS del Hero */
+.slide-down { animation: slideDown 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.fade-up { animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.delay-1 { animation-delay: 0.3s; }
 
-@keyframes slideDown { /* Fotogramas clave para que algo "caiga" desde el cielo */
-    from { transform: translateY(-100%); opacity: 0; } /* Inicia fuera de la pantalla por encima (Y negativo) e invisible */
-    to { transform: translateY(0); opacity: 1; } /* Termina en su posición natural (0) y 100% visible */
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
-@keyframes fadeUp { /* Fotogramas clave para que algo "suba" y aparezca */
-    from { transform: translateY(50px); opacity: 0; } /* Inicia 50px por debajo de donde debería e invisible */
-    to { transform: translateY(0); opacity: 1; } /* Termina acomodado en su lugar, listo para usarse */
+@keyframes fadeUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }

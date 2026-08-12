@@ -1,9 +1,9 @@
-// Lista de preguntas. 'p' es la pregunta, 'o' son las opciones y 'c' es la posición de la respuesta correcta (empezando desde 0)
+// Banco de 10 preguntas de Música (Tema Cyberpunk/Synthwave)
 const preguntas = [
     {
       p: "¿Cuál de los siguientes artistas es ampliamente conocido en la historia como el 'Rey del Pop'?",
       o: ["Elvis Presley", "Michael Jackson", "Prince", "Freddie Mercury"],
-      c: 1 
+      c: 1
     },
     {
       p: "¿Qué famosa Boy Band británica-irlandesa causó un fenómeno mundial tras formarse en el programa The X Factor con éxitos como 'What Makes You Beautiful'?",
@@ -52,19 +52,19 @@ const preguntas = [
     }
   ];
   
-  // Objeto para llevar la cuenta de en qué pregunta vamos y cuántos puntos tenemos
+  // Estado global de la partida
   let estado = {
     actual: 0,
     puntos: 0
   };
   
-  // Busca todas las pantallas, las oculta quitando la clase 'active', y se la pone solo a la que queremos mostrar
+  // Función para alternar visibilidad de pantallas
   function mostrarPantalla(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
   }
   
-  // Resetea los valores a cero, muestra la pantalla de juego y carga la primera pregunta
+  // Inicia las variables y cambia a la interfaz de juego
   function comenzar() {
     estado.actual = 0;
     estado.puntos = 0;
@@ -73,59 +73,54 @@ const preguntas = [
     renderPregunta();
   }
   
-  // Se encarga de poner el texto de la pregunta actual y sus opciones en la pantalla
+  // Dibuja la pregunta actual y sus opciones en el HTML
   function renderPregunta() {
-    // Ocultamos el botón de 'Siguiente' para que no hagan trampa
     document.getElementById('btn-siguiente').style.display = 'none';
     const data = preguntas[estado.actual];
     
-    // Actualizamos los textos descriptivos de la parte superior
+    // Actualizar textos y barra de progreso de forma fluida
     document.getElementById('campo-pregunta').textContent = data.p;
     document.getElementById('info-progreso').textContent = `Pregunta ${estado.actual + 1} de ${preguntas.length}`;
     
-    // Calculamos el porcentaje de la barra de progreso y lo aplicamos
     const pct = (estado.actual / preguntas.length) * 100;
     document.getElementById('barra').style.width = `${pct}%`;
   
-    // Vaciamos la zona de respuestas para poner las de la nueva pregunta
+    // Limpiar contenedor e inyectar botones de respuestas
     const contenedor = document.getElementById('opciones');
     contenedor.innerHTML = '';
   
-    // Por cada opción disponible, creamos un botón HTML desde cero
     data.o.forEach((opcion, i) => {
       const btn = document.createElement('button');
       btn.className = 'btn-option';
       btn.textContent = opcion;
-      // Le decimos al botón que al hacerle clic evalúe si es la respuesta correcta
       btn.onclick = () => evaluar(i, btn);
       contenedor.appendChild(btn);
     });
   }
   
-  // Revisa si la opción que tocaste coincide con la respuesta correcta almacenada
+  // Evalúa si la opción elegida es correcta o incorrecta
   function evaluar(seleccionado, btnClikeado) {
     const correcta = preguntas[estado.actual].c;
     const botones = document.querySelectorAll('.btn-option');
   
-    // Desactivamos todos los botones para que no puedan volver a elegir
+    // Bloquear todos los botones de opciones para evitar doble respuesta
     botones.forEach(b => b.disabled = true);
   
     if (seleccionado === correcta) {
-      // Si acertaste, pinta el botón de verde y suma 100 puntos
       btnClikeado.classList.add('correct');
       estado.puntos += 100;
       document.getElementById('info-puntos').textContent = `${estado.puntos} pts`;
     } else {
-      // Si fallaste, pinta tu botón de rojo e ilumina de verde el que era correcto
       btnClikeado.classList.add('wrong');
+      // Revelar visualmente cuál era la respuesta correcta con luz neón verde
       botones[correcta].classList.add('correct');
     }
   
-    // Ahora sí, permitimos pasar a la siguiente pregunta
+    // Mostrar el botón para avanzar
     document.getElementById('btn-siguiente').style.display = 'block';
   }
   
-  // Suma 1 al contador de preguntas. Si aún quedan, las muestra; si no, termina el juego
+  // Avanza a la siguiente pregunta o finaliza el juego
   function siguiente() {
     estado.actual++;
     if (estado.actual < preguntas.length) {
@@ -135,15 +130,12 @@ const preguntas = [
     }
   }
   
-  // Muestra la puntuación final y un mensaje personalizado según cómo te fue
+  // Muestra la pantalla de resultados con mensajes dinámicos
   function finalizar() {
     const maxPuntos = preguntas.length * 100;
-    
-    // Llenamos la barra al 100% al terminar
     document.getElementById('barra').style.width = `100%`;
     document.getElementById('score').textContent = `${estado.puntos} / ${maxPuntos}`;
     
-    // Decidimos qué mensaje mostrar usando condicionales
     let msg = "";
     if (estado.puntos === maxPuntos) {
       msg = "⚡ ¡Perfecto! Eres una leyenda de la música, tu oído es de nivel Dios.";
@@ -157,7 +149,7 @@ const preguntas = [
     mostrarPantalla('resultado');
   }
   
-  // Vuelve a cargar el menú inicial para jugar otra vez
+  // Regresa al menú inicial
   function reiniciar() {
     mostrarPantalla('inicio');
   }

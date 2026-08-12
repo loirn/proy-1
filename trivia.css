@@ -1,4 +1,3 @@
-/* Paleta de colores almacenada en variables para uso fácil en todo el archivo */
 :root {
     --bg: #05050d;
     --surface: rgba(13, 12, 29, 0.75);
@@ -9,11 +8,10 @@
     --text: #fdfaae; /* Amarillo pastel claro muy suave estilo retro */
     --text-white: #ffffff;
     --text-muted: #8b8ba7;
-    --green: #39ff14; /* Verde Neón*/
+    --green: #39ff14; /* Verde Neón */
     --red: #ff3131; /* Rojo Neón */
   }
   
-  /* Resetea los espacios en blanco que el navegador pone por defecto */
   * { 
     box-sizing: border-box; 
     margin: 0; 
@@ -22,7 +20,7 @@
   
   body {
     font-family: 'Segoe UI', system-ui, sans-serif;
-    /* Crea un fondo con degradado circular para darle un toque Cyberpunk */
+    /* Fondo dinámico estilo Cyberpunk */
     background: radial-gradient(circle at center, #1b0c2e 0%, var(--bg) 100%);
     color: var(--text-white);
     min-height: 100vh;
@@ -32,21 +30,21 @@
     padding: 20px;
   }
   
-  /* Contenedor principal de la trivia con efecto de vidrio esmerilado (Glassmorphism) */
+  /* Tarjeta estilo Cristal de Neón */
   .card {
     background: var(--surface);
-    backdrop-filter: blur(16px); /* Desenfoque del fondo para el efecto cristal */
+    backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--surface-border);
     padding: 40px;
     border-radius: 24px;
     width: 100%;
-    max-width: 580px; /* Evita que se estire demasiado en monitores grandes */
-    box-shadow: 0 0 30px rgba(255, 0, 128, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.05); /* Sombra exterior e interior */
+    max-width: 580px;
+    box-shadow: 0 0 30px rgba(255, 0, 128, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.05);
     text-align: center;
   }
   
-  /* Título principal con efecto de luz difuminada */
+  /* Títulos y textos */
   h1 { 
     font-size: 2.3rem; 
     margin-bottom: 12px; 
@@ -56,7 +54,6 @@
     text-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
   }
   
-  /* Subtítulos (como el texto de las preguntas) alineados a la izquierda*/
   h2 { 
     font-size: 1.35rem; 
     margin-bottom: 24px; 
@@ -66,7 +63,6 @@
     color: var(--text);
   }
   
-  /* Párrafos descriptivos con un color más apagado */
   p { 
     color: var(--text-muted); 
     font-size: 1.05rem; 
@@ -74,31 +70,30 @@
     line-height: 1.5; 
   }
   
-  /* Base oscura para la barra de progreso*/
+  /* Barra de Progreso Minimalista */
   .progress-container {
     width: 100%;
     height: 6px;
     background: rgba(255, 255, 255, 0.03);
     border-radius: 10px;
     margin-bottom: 25px;
-    overflow: hidden; /* Corta todo lo que se salga de los bordes curvos */
+    overflow: hidden;
     border: 1px solid rgba(0, 240, 255, 0.1);
   }
   
-  /* La línea brillante que se va llenando según avanzas */
   .progress-bar {
     height: 100%;
     width: 0%;
     background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
     border-radius: 10px;
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Animación suave al cambiar el ancho */
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 0 10px var(--accent);
   }
   
-  /* Textos pequeños encima de la barra de progreso */
+  /* Datos de cabecera */
   .quiz-header {
     display: flex;
-    justify-content: space-between; /* Separa los elementos hacia los extremos */
+    justify-content: space-between;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -108,7 +103,7 @@
     text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
   }
   
-  /* Organiza los botones de opciones uno debajo del otro con una pequeña separación */
+  /* Contenedor de Botones de Opciones */
   .options-grid {
     display: flex;
     flex-direction: column;
@@ -116,7 +111,7 @@
     margin-bottom: 25px;
   }
   
-  /* Estilo base para los botones de las respuestas[cite: 4] */
+  /* Botones de Opciones Estilizados con efecto Glow */
   .btn-option {
     background: rgba(255, 255, 255, 0.02);
     color: var(--text-white);
@@ -130,15 +125,14 @@
     transition: all 0.2s ease;
   }
   
-  /* Efecto al pasar el mouse SOLO si el botón no está deshabilitado */
   .btn-option:hover:not([disabled]) {
     background: rgba(0, 240, 255, 0.05);
     border-color: var(--accent-cyan);
-    transform: translateY(-2px); /* Eleva el botón ligeramente */
+    transform: translateY(-2px);
     box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
   }
   
-  /* Estilos forzados (usando !important) cuando la respuesta es CORRECTA */
+  /* Estados de validación */
   .btn-option.correct {
     background: rgba(57, 255, 20, 0.1) !important;
     border-color: var(--green) !important;
@@ -147,7 +141,6 @@
     box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
   }
   
-  /* Estilos forzados cuando la respuesta es INCORRECTA */
   .btn-option.wrong {
     background: rgba(255, 49, 49, 0.1) !important;
     border-color: var(--red) !important;
@@ -155,7 +148,7 @@
     box-shadow: 0 0 15px rgba(255, 49, 49, 0.3);
   }
   
-  /* Botones principales de acción (Iniciar, Siguiente, Reiniciar) */
+  /* Botón Principal */
   .btn-primary {
     background: var(--accent);
     color: white;
@@ -171,24 +164,21 @@
     letter-spacing: 1px;
   }
   
-  /* Efecto hover para el botón principal */
   .btn-primary:hover {
     background: var(--accent-hover);
     transform: translateY(-1px);
     box-shadow: 0 0 25px rgba(255, 0, 127, 0.6);
   }
   
-  /* Oculta por completo cualquier pantalla que tenga esta clase */
   .screen { 
     display: none; 
   }
   
-  /* Muestra la pantalla únicamente si se le añade la clase 'active' */
   .screen.active { 
     display: block; 
   }
   
-  /* Estilo gigante y neón para el número del puntaje final */
+  /* Puntuación final */
   .score-badge {
     font-size: 3.5rem;
     font-weight: 800;

@@ -1,396 +1,239 @@
-:root { /* Selector especial que guarda variables globales, accesibles desde cualquier lugar del CSS */
-    --bg:         #0d0d14; /* Color de fondo general (negro azulado muy oscuro) */
-    --surface:    #15151f; /* Color de superficie para paneles (gris muy oscuro) */
-    --surface2:   #1e1e2e; /* Color de superficie secundaria (gris más claro para contrastar paneles) */
-    --border:     #2e2e45; /* Color de las líneas divisorias y bordes */
-    --accent:     #f7c948; /* Color de acento principal (amarillo mostaza/neón) */
-    --accent2:    #ff5e7e; /* Color de acento secundario para errores (rojo rosáceo) */
-    --green:      #3cffa0; /* Color verde menta para indicar aciertos o éxito */
-    --text:       #e8e8f0; /* Color del texto principal (blanco crudo) */
-    --text-muted: #6e6e8e; /* Color del texto secundario o menos importante (gris desaturado) */
-    --radius:     12px; /* Valor global para curvar las esquinas de los elementos */
-    --font-title: 'Bebas Neue', sans-serif; /* Tipografía global para encabezados gruesos */
-    --font-body:  'DM Sans', sans-serif; /* Tipografía global para el texto de lectura normal */
+:root {
+    --bg:         #0d0d14;
+    --surface:    #15151f;
+    --surface2:   #1e1e2e;
+    --border:     #2e2e45;
+    --accent:     #f7c948;
+    --accent2:    #ff5e7e;
+    --green:      #3cffa0;
+    --text:       #e8e8f0;
+    --text-muted: #6e6e8e;
+    --radius:     12px;
+    --font-title: 'Bebas Neue', sans-serif;
+    --font-body:  'DM Sans', sans-serif;
   }
   
-  *, *::before, *::after { /* Selector universal que aplica estas reglas a TODOS los elementos y sus pseudo-elementos */
-      box-sizing: border-box; /* Hace que el tamaño de la caja (width/height) incluya el padding y el border, evitando desbordamientos */
-      margin: 0; /* Elimina cualquier margen externo que el navegador ponga por defecto */
-      padding: 0; /* Elimina espacios internos predeterminados */
-  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
   body {
-    font-family: var(--font-body); /* Aplica la fuente de lectura a todo el documento */
-    background: var(--bg); /* Pinta el fondo del cuerpo con la variable muy oscura */
-    color: var(--text); /* Todo el texto base será color claro */
-    min-height: 100vh; /* Obliga a la página a medir por lo menos el 100% de la altura de la ventana (Viewport Height) */
-    overflow-x: hidden; /* Corta y oculta cualquier elemento que intente salirse de la pantalla horizontalmente */
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
   }
   
   .bg-grid {
-    position: fixed; /* Fija la cuadrícula a la pantalla para que no se desplace al hacer scroll */
-    inset: 0; /* Abreviatura moderna: equivale a top:0; right:0; bottom:0; left:0; (ocupa toda la pantalla) */
-    z-index: 0; /* Define la profundidad (stacking context). '0' lo deja en el fondo. */
+    position: fixed; inset: 0; z-index: 0;
     background-image:
-      linear-gradient(rgba(247,201,72,.04) 1px, transparent 1px), /* Crea una línea horizontal semitransparente de 1px */
-      linear-gradient(90deg, rgba(247,201,72,.04) 1px, transparent 1px); /* Crea una línea vertical (girada a 90 grados) de 1px */
-    background-size: 48px 48px; /* Repite esas líneas cada 48 píxeles en ambos ejes, formando la cuadrícula */
-    pointer-events: none; /* Hace que la capa sea 'fantasma', los clics del ratón la atraviesan sin interactuar */
+      linear-gradient(rgba(247,201,72,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(247,201,72,.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
   }
   
   .noise {
-    position: fixed; /* Mantiene la textura fija en pantalla */
-    inset: 0; /* Estira el elemento para cubrir la pantalla completa */
-    z-index: 0; /* Lo mantiene al fondo, igual que la cuadrícula */
-    opacity: .03; /* Hace que el ruido sea casi imperceptible (3% de opacidad) */
-    background-image: url("data:image/svg+xml,..."); /* Inyecta directamente un código SVG que genera ruido fractal (estática de TV) */
-    pointer-events: none; /* Evita que la capa estorbe a los clics del usuario */
+    position: fixed; inset: 0; z-index: 0; opacity: .03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
   }
   
   .wrapper {
-    position: relative; /* Contexto de posición para evitar que capas fixed lo tapen, y actúa como ancla de sus hijos absolutos */
-    z-index: 1; /* Pone el contenido principal por encima de los fondos (que son 0) */
-    max-width: 820px; /* Limita el ancho del juego en pantallas muy grandes */
-    margin: 0 auto; /* Centra el bloque horizontalmente (margen auto a los lados) */
-    padding: 2rem 1.2rem 4rem; /* Espaciado interno: 2rem arriba, 1.2rem lados, 4rem abajo */
-    display: flex; /* Activa Flexbox para estructurar sus hijos fácilmente */
-    flex-direction: column; /* Apila los elementos internos de arriba hacia abajo (en columna) */
-    gap: 2rem; /* Crea un espacio vacío de 2rem entre cada hijo (header, main, etc.) */
+    position: relative; z-index: 1;
+    max-width: 820px; margin: 0 auto;
+    padding: 2rem 1.2rem 4rem;
+    display: flex; flex-direction: column; gap: 2rem;
   }
   
   /* ---- Header ---- */
   .header {
-    display: flex; /* Activa Flexbox para alinear el logo y el marcador en fila */
-    align-items: center; /* Alinea los elementos verticalmente al centro */
-    justify-content: space-between; /* Empuja un elemento a la extrema izquierda y el otro a la derecha */
-    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si la pantalla es muy estrecha (móviles) */
-    gap: 1rem; /* Separa los elementos por 1rem si chocan */
-    border-bottom: 1px solid var(--border); /* Dibuja una línea sutil debajo de toda la cabecera */
-    padding-bottom: 1.4rem; /* Crea un respiro interno entre el contenido y la línea divisoria inferior */
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    border-bottom: 1px solid var(--border); padding-bottom: 1.4rem;
   }
   
-  .logo-wrap { display: flex; align-items: center; gap: .8rem; } /* Flexbox para poner el icono junto al texto del logo, separados por un pequeño hueco */
+  .logo-wrap { display: flex; align-items: center; gap: .8rem; }
   
   .logo-icon {
-    font-size: 2.2rem; /* Aumenta el tamaño del icono de la estrella */
-    color: var(--accent); /* Lo tiñe de amarillo */
-    animation: spin 8s linear infinite; /* Le aplica la animación 'spin', tardando 8 segundos, de forma fluida (linear) y para siempre */
-    display: inline-block; /* Soporta transformaciones (rotación) sin romper el texto contiguo */
+    font-size: 2.2rem; color: var(--accent);
+    animation: spin 8s linear infinite; display: inline-block;
   }
-  @keyframes spin { to { transform: rotate(360deg); } } /* Define la animación: al terminar (to), debe haber dado un giro completo (360 grados) */
+  @keyframes spin { to { transform: rotate(360deg); } }
   
   .logo-title {
-    font-family: var(--font-title); /* Usa la fuente gruesa 'Bebas Neue' */
-    font-size: 2rem; /* Tamaño grande para el título */
-    line-height: 1; /* Reduce el interlineado interno para que las palabras estén pegaditas */
-    letter-spacing: .04em; /* Separa un poquito las letras para estilo tecnológico */
+    font-family: var(--font-title); font-size: 2rem;
+    line-height: 1; letter-spacing: .04em;
   }
-  .logo-title em { font-style: normal; color: var(--accent); } /* Quita la cursiva por defecto de la etiqueta <em> y pinta el texto de amarillo */
+  .logo-title em { font-style: normal; color: var(--accent); }
   
   .scoreboard {
-    display: flex; /* Alinea horizontalmente las cajas de puntaje */
-    align-items: center; /* Las centra verticalmente */
-    gap: .6rem; /* Pequeño espacio entre cada caja */
-    background: var(--surface2); /* Fondo gris claro para destacar el marcador del fondo general */
-    border: 1px solid var(--border); /* Borde sutil alrededor de todo el marcador */
-    border-radius: var(--radius); /* Esquinas redondeadas (usando la variable global de 12px) */
-    padding: .6rem 1rem; /* Espaciado interior cómodo */
+    display: flex; align-items: center; gap: .6rem;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: .6rem 1rem;
   }
-  .score-item { text-align: center; } /* Centra el texto "NIVEL" y su número correspondiente */
-  
+  .score-item { text-align: center; }
   .score-label {
-    display: block; /* Obliga al texto a ocupar toda la línea, empujando el número hacia abajo */
-    font-size: .62rem; /* Letra muy pequeñita */
-    letter-spacing: .1em; /* Mucho espacio entre letras para darle un aire futurista o limpio */
-    color: var(--text-muted); /* Gris apagado para que no robe protagonismo al número */
-    text-transform: uppercase; /* Fuerza letras mayúsculas */
+    display: block; font-size: .62rem;
+    letter-spacing: .1em; color: var(--text-muted); text-transform: uppercase;
   }
   .score-val {
-    display: block; /* Ocupa su propia línea inferior */
-    font-family: var(--font-title); /* Usa la fuente gruesa numérica */
-    font-size: 1.3rem; /* Tamaño destacado */
-    color: var(--accent); /* Color amarillo */
-    letter-spacing: .05em; /* Separación sutil de caracteres */
+    display: block; font-family: var(--font-title);
+    font-size: 1.3rem; color: var(--accent); letter-spacing: .05em;
   }
-  .score-divider { 
-      width: 1px; /* Crea un divisor vertical finísimo */
-      height: 32px; /* Con una altura delimitada */
-      background: var(--border); /* Pintado del color de borde sutil */
-  }
+  .score-divider { width: 1px; height: 32px; background: var(--border); }
   
   /* ---- Hint ---- */
   .hint-bar {
-    display: flex; /* Alinea el foco del foquito y el texto en la misma fila */
-    align-items: center; /* Centrado vertical */
-    gap: .7rem; /* Hueco de separación */
-    background: var(--surface); /* Fondo oscuro del panel */
-    border: 1px solid var(--border); /* Borde perimetral */
-    border-left: 3px solid var(--accent); /* Resalta el borde izquierdo con un grosor de 3px color amarillo (estilo 'quote' o alerta) */
-    border-radius: var(--radius); /* Curva las esquinas */
-    padding: .75rem 1rem; /* Relleno interior */
-    font-size: .9rem; /* Tamaño de lectura amigable */
-    color: var(--text-muted); /* Texto atenuado */
+    display: flex; align-items: center; gap: .7rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius); padding: .75rem 1rem;
+    font-size: .9rem; color: var(--text-muted);
   }
   
   /* ---- Game area ---- */
-  .game-area { 
-      display: flex; /* Estructura las secciones de juego en bloque */
-      flex-direction: column; /* Apila pista, banco de letras y zona de construcción verticalmente */
-      gap: 1.6rem; /* Espaciado abundante entre estas sub-secciones */
-  }
+  .game-area { display: flex; flex-direction: column; gap: 1.6rem; }
   
   .section-label {
-    font-size: .68rem; /* Tamaño pequeñito para el título descriptivo */
-    letter-spacing: .16em; /* Letras sumamente espaciadas */
-    text-transform: uppercase; /* Mayúsculas forzadas */
-    color: var(--text-muted); /* Color grisáceo */
-    margin-bottom: .6rem; /* Empuja el contenedor de fichas que está debajo un poco hacia abajo */
+    font-size: .68rem; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: .6rem;
   }
   
   /* ---- Word bank ---- */
   .word-bank {
-    display: flex; /* Flexbox para alinear las fichas */
-    flex-wrap: wrap; /* Propiedad crucial: si hay muchas fichas y no caben, las tira a la línea de abajo en lugar de desbordarse */
-    gap: .55rem; /* Separación entre cada ficha */
-    min-height: 64px; /* Asegura que el panel no colapse a 0px si se queda sin fichas (evita saltos en la interfaz) */
-    background: var(--surface); /* Fondo gris oscuro */
-    border: 1px solid var(--border); /* Borde fino */
-    border-radius: var(--radius); /* Esquinas curvadas */
-    padding: .9rem; /* Margen interior general */
+    display: flex; flex-wrap: wrap; gap: .55rem; min-height: 64px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: .9rem;
   }
   
   .word-chip {
-    display: inline-flex; /* Se comporta como un botón sólido pero fluye como texto (uno al lado del otro) y permite alinear su interior */
-    align-items: center; /* Centra el texto de la ficha */
-    padding: .45rem .9rem; /* Forma rectangular cómoda */
-    background: var(--surface2); /* Fondo gris contrastante */
-    border: 1.5px solid var(--border); /* Borde sutil, un pelín más grueso de lo normal (1.5) */
-    border-radius: 8px; /* Redondeo menos pronunciado que el general */
-    font-size: .95rem; /* Letra estándar */
-    font-weight: 500; /* Letra semi-negrita */
-    color: var(--text); /* Color claro */
-    cursor: pointer; /* Cambia el ratón a una mano clickeable */
-    user-select: none; /* Evita que el usuario seleccione el texto de la ficha por error al arrastrar */
-    transition: transform .12s, background .15s, border-color .15s, opacity .2s; /* Transiciones separadas para hacer el hover fluido (color) y el movimiento físico (transform) muy responsivo */
-    animation: chipIn .25s ease both; /* Aplica la animación de entrada al nacer la ficha, 'both' retiene los estilos iniciales/finales */
+    display: inline-flex; align-items: center;
+    padding: .45rem .9rem;
+    background: var(--surface2); border: 1.5px solid var(--border);
+    border-radius: 8px; font-size: .95rem; font-weight: 500;
+    color: var(--text); cursor: pointer; user-select: none;
+    transition: transform .12s, background .15s, border-color .15s, opacity .2s;
+    animation: chipIn .25s ease both;
   }
   @keyframes chipIn {
-    from { opacity:0; transform: scale(.8) translateY(6px); } /* Nace invisible, un 20% más pequeña y 6px más abajo */
-    to   { opacity:1; transform: scale(1) translateY(0); } /* Termina visible, tamaño normal, posición natural (efecto pop) */
+    from { opacity:0; transform: scale(.8) translateY(6px); }
+    to   { opacity:1; transform: scale(1) translateY(0); }
   }
   .word-chip:hover {
-    background: var(--accent); /* Al pasar el ratón, se tiñe entera de amarillo */
-    color: #000; /* El texto se hace negro para hacer alto contraste y ser legible */
-    border-color: var(--accent); /* El borde también se vuelve amarillo */
-    transform: translateY(-2px) scale(1.04); /* Efecto levitación: sube 2px y crece un microscópico 4% (1.04) */
+    background: var(--accent); color: #000;
+    border-color: var(--accent); transform: translateY(-2px) scale(1.04);
   }
-  .word-chip.placed { 
-      opacity: 0; /* Si la ficha ya fue puesta en la zona de juego, se vuelve totalmente invisible en el banco */
-      pointer-events: none; /* No se le puede dar clic ni arrastrar de nuevo */
-      transform: scale(.8); /* Se encoge (aunque es invisible, ayuda a la animación si reaparece) */
-  }
-  .word-chip.dragging { 
-      opacity: .4; /* Cuando el usuario está arrastrando la ficha, su versión original se vuelve semi-transparente */
-      transform: scale(.95); /* Se encoge un 5% mientras la agarras */
-  }
+  .word-chip.placed { opacity: 0; pointer-events: none; transform: scale(.8); }
+  .word-chip.dragging { opacity: .4; transform: scale(.95); }
   
   /* ---- Build zone ---- */
   .build-zone {
-    min-height: 80px; /* Alto fijo mínimo para tener un blanco de caída cómodo (Dropzone) */
-    background: var(--surface); /* Fondo base */
-    border: 2px dashed var(--border); /* Borde punteado/de guiones gruesos (2px), indicando que es un contenedor receptor */
-    border-radius: var(--radius); /* Esquinas redondeadas */
-    padding: .9rem 1rem; /* Espaciado para que las fichas no toquen los bordes */
-    display: flex; /* Flexbox para alinear las fichas soltadas */
-    flex-wrap: wrap; /* Permite multi-líneas si hay muchas palabras construidas */
-    gap: .55rem; /* Separación entre fichas soltadas */
-    align-items: center; /* Centra las fichas con el texto placeholder (si lo hay) */
-    transition: border-color .2s, background .2s; /* Transición suave al iluminarse cuando se arrastra algo encima */
+    min-height: 80px; background: var(--surface);
+    border: 2px dashed var(--border); border-radius: var(--radius);
+    padding: .9rem 1rem; display: flex; flex-wrap: wrap;
+    gap: .55rem; align-items: center;
+    transition: border-color .2s, background .2s;
   }
   .build-zone.drag-over {
-    border-color: var(--accent); /* Cuando pasas una ficha por encima arrastrando, el borde punteado se ilumina amarillo */
-    background: rgba(247,201,72,.05); /* Y el fondo gana un leve tono amarillo (5% de opacidad) */
+    border-color: var(--accent); background: rgba(247,201,72,.05);
   }
-  .build-placeholder { 
-      color: var(--text-muted); /* Gris apagado para el texto "Coloca las palabras aquí" */
-      font-size: .9rem; /* Tamaño estándar */
-      font-style: italic; /* Letra cursiva para denotar que es un texto de ayuda, no real */
-  }
+  .build-placeholder { color: var(--text-muted); font-size: .9rem; font-style: italic; }
   
   .built-chip {
-    display: inline-flex; /* Permite botón en línea */
-    align-items: center; /* Centrado vertical interno */
-    gap: .35rem; /* Pequeño espacio entre la palabra y la crucecita 'X' */
-    padding: .45rem .9rem; /* Relleno idéntico al de la ficha normal */
-    background: var(--accent); /* Nace permanentemente amarilla */
-    color: #000; /* Texto negro */
-    border-radius: 8px; /* Bordes suaves */
-    font-size: .95rem; /* Tamaño de fuente normal */
-    font-weight: 700; /* Letra Negrita (más fuerte que el 500 del banco) para indicar fijación */
-    cursor: pointer; /* Indicar que interactúa al clic (para borrarla) */
-    animation: chipIn .2s ease both; /* Animación de aparición rápida tipo Pop */
-    transition: transform .12s, filter .12s; /* Transición para efecto físico (mover y alterar color) */
+    display: inline-flex; align-items: center; gap: .35rem;
+    padding: .45rem .9rem; background: var(--accent); color: #000;
+    border-radius: 8px; font-size: .95rem; font-weight: 700;
+    cursor: pointer; animation: chipIn .2s ease both;
+    transition: transform .12s, filter .12s;
   }
-  .built-chip:hover { 
-      filter: brightness(1.15); /* Al pasar el ratón sobre la ficha construida, se aclara un 15% mediante un filtro matemático */
-      transform: translateY(-1px); /* Levitación levísima (1px) */
-  }
-  .built-chip .remove-x { 
-      font-size: .75rem; /* La crucecita (✕) es más pequeña que el resto del texto */
-      opacity: .55; /* Es semi-transparente para no ser invasiva */
-      font-weight: 900; /* Pero sumamente gruesa (Black) para que se lea bien */
-  }
+  .built-chip:hover { filter: brightness(1.15); transform: translateY(-1px); }
+  .built-chip .remove-x { font-size: .75rem; opacity: .55; font-weight: 900; }
   
   /* ---- Botones ---- */
-  .action-row { 
-      display: flex; /* Fila Flexbox para alojar todos los botones de la parte inferior */
-      gap: .75rem; /* Espaciado entre botones */
-      flex-wrap: wrap; /* Multi-línea si la pantalla es chica */
-      justify-content: flex-end; /* Empuja a todos los botones hacia el final del contenedor (a la derecha) */
-  }
+  .action-row { display: flex; gap: .75rem; flex-wrap: wrap; justify-content: flex-end; }
   
   .btn {
-    display: inline-flex; /* Comportamiento en bloque compacto */
-    align-items: center; /* Alineación del texto y el icono interno */
-    gap: .4rem; /* Distancia entre emoji/icono y texto */
-    padding: .6rem 1.25rem; /* Forma rectangular del botón */
-    border-radius: 8px; /* Esquinas suavizadas */
-    font-family: var(--font-body); /* Tipografía limpia */
-    font-size: .9rem; /* Tamaño manejable */
-    font-weight: 600; /* Negrita para lectura rápida (Call to Action) */
-    cursor: pointer; /* Mano interactiva */
-    border: none; /* Elimina relieves nativos de botones del SO */
-    transition: transform .1s, filter .15s; /* Animación rápida para sentir el 'clic' real en los dedos */
+    display: inline-flex; align-items: center; gap: .4rem;
+    padding: .6rem 1.25rem; border-radius: 8px;
+    font-family: var(--font-body); font-size: .9rem; font-weight: 600;
+    cursor: pointer; border: none; transition: transform .1s, filter .15s;
   }
-  .btn:active { transform: scale(.96); } /* Estado ACTIVE: ocurre el milisegundo exacto en que presionas el ratón. Hunde el botón al 96% de su tamaño */
-  
-  .btn-primary { 
-      background: var(--accent); /* Botón principal, fondo amarillo resaltado */
-      color: #000; /* Texto oscuro para legibilidad */
-  }
-  .btn-primary:hover { filter: brightness(1.1); } /* Aumenta el brillo en 10% al hacer hover */
-  
+  .btn:active { transform: scale(.96); }
+  .btn-primary { background: var(--accent); color: #000; }
+  .btn-primary:hover { filter: brightness(1.1); }
   .btn-ghost {
-    background: var(--surface2); /* Botón fantasma/secundario. Fondo gris que se camufla con la UI */
-    color: var(--text-muted); /* Texto atenuado para no gritar atención */
-    border: 1px solid var(--border); /* Contorno sutil delineando el botón */
+    background: var(--surface2); color: var(--text-muted);
+    border: 1px solid var(--border);
   }
-  .btn-ghost:hover { 
-      color: var(--text); /* Texto se ilumina a blanco en hover */
-      border-color: var(--accent2); /* El borde se tiñe del color secundario (rojizo) indicando interactividad */
-  }
+  .btn-ghost:hover { color: var(--text); border-color: var(--accent2); }
   
   /* ---- Timer ---- */
-  .timer-wrap { 
-      display: flex; /* Fila que acomoda la barra y los números */
-      align-items: center; /* Centro vertical */
-      gap: .75rem; /* Espacio entre ambos */
-  }
+  .timer-wrap { display: flex; align-items: center; gap: .75rem; }
   .timer-bar-bg {
-    flex: 1; /* Le dice a la caja base que absorba todo el espacio vacío horizontal sobrante, comprimiendo al texto numérico al borde */
-    height: 6px; /* Altura de la pista del cronómetro (delgadita) */
-    background: var(--surface2); /* Gris para el área "gastada" del tiempo */
-    border-radius: 99px; /* Curvatura extrema de píldora (círculo en las esquinas) */
-    overflow: hidden; /* Garantiza que la barra interna amarilla no se salga de las curvas perfectas de la pista */
+    flex: 1; height: 6px; background: var(--surface2);
+    border-radius: 99px; overflow: hidden;
   }
   .timer-bar {
-    height: 100%; /* Ocupa el grosor total de su padre (6px) */
-    width: 100%; /* Empieza completamente llena de lado a lado */
-    background: var(--accent); /* Amarilla por defecto */
-    border-radius: 99px; /* También curva de píldora */
-    transition: width 1s linear, background .5s; /* Efecto CLAVE: Hace que la reducción de ancho (width) se anime muy lineal cada 1 segundo (evitando el brinco feo), y el cambio a rojo tome medio segundo suave */
+    height: 100%; width: 100%; background: var(--accent);
+    border-radius: 99px; transition: width 1s linear, background .5s;
   }
-  .timer-bar.warning { background: var(--accent2); } /* Clase añadida por JS cuando quedan pocos segundos (rojo) */
-  
+  .timer-bar.warning { background: var(--accent2); }
   .timer-label {
-    font-family: var(--font-title); /* Tipografía condensada para números */
-    font-size: 1.1rem; /* Número moderadamente grande */
-    color: var(--accent); /* Empieza amarillo */
-    min-width: 36px; /* Ancho mínimo forzado para que, cuando pase de "10s" a "9s", el diseño no baile por perder un caracter de ancho */
-    text-align: right; /* Asegura que el número siempre esté anclado a la derecha */
+    font-family: var(--font-title); font-size: 1.1rem;
+    color: var(--accent); min-width: 36px; text-align: right;
   }
   
   /* ---- Modales ---- */
   .modal-overlay {
-    position: fixed; /* Fija la capa sobre la ventana completa para inhabilitar el juego detrás */
-    inset: 0; /* Cubre 100% (arriba, abajo, izq, der) */
-    z-index: 100; /* Profundidad masiva (100) para asegurar que se ponga encima de la barra de menú o luces */
-    background: rgba(0,0,0,.75); /* Filtro negro al 75% para oscurecer la web trasera */
-    backdrop-filter: blur(6px); /* Difumina 6px (desenfoca) todo lo que está por debajo de esta capa oscura (estilo moderno) */
-    display: none; /* INVISIBLE de manera predeterminada. (Oculta la ventana y elimina su área ocupada) */
-    align-items: center; /* (Para cuando es flex) Centra la cajita blanca en el eje Y de la pantalla */
-    justify-content: center; /* (Para cuando es flex) Centra la cajita blanca en el eje X de la pantalla */
-    padding: 1rem; /* Evita que en celulares chiquitos la cajita choque directamente con los biseles del teléfono */
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(0,0,0,.75); backdrop-filter: blur(6px);
+    display: none; align-items: center; justify-content: center; padding: 1rem;
   }
-  .modal-overlay.active { display: flex; } /* Se activa por JS al cambiar 'none' por 'flex', haciéndola visible y centrando a sus hijos mágicamente */
+  .modal-overlay.active { display: flex; }
   
   .modal {
-    background: var(--surface); /* Fondo principal gris para la tarjeta flotante */
-    border: 1px solid var(--border); /* Contorno leve */
-    border-radius: 20px; /* Redondeo amigable masivo de las cuatro esquinas */
-    padding: 2.5rem 2rem; /* Mucho respiro de relleno interno (arriba/abajo - izquierda/derecha) */
-    max-width: 420px; /* Topa su crecimiento a lo ancho para que no se estire de más en PC */
-    width: 100%; /* Toma todo el ancho que se le deje (hasta los 420px) */
-    text-align: center; /* Todo centrado como anuncio de alerta */
-    box-shadow: 0 8px 32px rgba(0,0,0,.55), 0 0 40px rgba(247,201,72,.1); /* Sombra compleja: Sombra 1 (negra, caída hacia abajo fuerte) Sombra 2 (Amarilla, difuminada a todo alrededor simulando brillo) */
-    animation: modalIn .3s cubic-bezier(.34,1.56,.64,1) both; /* Animación de entrada. Usa una curva cúbica matemática extrema que sobrepasa el punto final y regresa (crea un efecto rebote/resorte elástico hiper fluido) */
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 2.5rem 2rem;
+    max-width: 420px; width: 100%; text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,.55), 0 0 40px rgba(247,201,72,.1);
+    animation: modalIn .3s cubic-bezier(.34,1.56,.64,1) both;
   }
   @keyframes modalIn {
-    from { opacity:0; transform: scale(.85) translateY(20px); } /* Viene invisible, encogida al 85% y hundida 20px abajo */
-    to   { opacity:1; transform: scale(1) translateY(0); } /* Encaja en tamaño real y centro perfecto con opacidad plena */
+    from { opacity:0; transform: scale(.85) translateY(20px); }
+    to   { opacity:1; transform: scale(1) translateY(0); }
   }
-  .modal-icon { 
-      font-size: 3rem; /* Emoji gigante */
-      margin-bottom: .5rem; /* Margen inferior */
-  }
+  .modal-icon { font-size: 3rem; margin-bottom: .5rem; }
   .modal-title {
-    font-family: var(--font-title); /* Fuente de títulos condensada */
-    font-size: 2.4rem; /* Gran peso visual */
-    color: var(--accent); /* Letra amarilla por defecto */
-    margin-bottom: .4rem; /* Separación con el texto de abajo */
+    font-family: var(--font-title); font-size: 2.4rem;
+    color: var(--accent); margin-bottom: .4rem;
   }
-  .modal-body { 
-      color: var(--text-muted); /* Texto de justificación en gris */
-      font-size: .95rem; /* Pequeño */
-      margin-bottom: .5rem; /* Separación base */
-  }
+  .modal-body { color: var(--text-muted); font-size: .95rem; margin-bottom: .5rem; }
   .modal-answer {
-    font-size: 1rem; /* Texto de respuesta normal */
-    font-weight: 600; /* Gruesito */
-    color: var(--green); /* Se pinta verde para reforzar que era la solución correcta */
-    margin: .5rem 0 1.2rem; /* Márgenes top:0.5rem y bottom:1.2rem, alejándolo del botón inferior */
+    font-size: 1rem; font-weight: 600; color: var(--green);
+    margin: .5rem 0 1.2rem;
   }
-  .modal-score-final { 
-      font-size: 1.1rem; /* Texto para el puntaje final un poco mayor */
-      margin: .4rem 0 1.2rem; /* Separaciones top/bottom */
-  }
+  .modal-score-final { font-size: 1.1rem; margin: .4rem 0 1.2rem; }
   
   /* ---- Feedback animaciones ---- */
   .build-zone.correct {
-    border-color: var(--green); /* Si la respuesta es buena, cambia el borde punteado general a Verde */
-    background: rgba(60,255,160,.07); /* Dañade una mancha verde transparente muy leve (7%) al fondo */
-    animation: pulse-green .4s; /* Dispara vibración de felicidad verde */
+    border-color: var(--green); background: rgba(60,255,160,.07);
+    animation: pulse-green .4s;
   }
   .build-zone.wrong {
-    border-color: var(--accent2); /* Si fallas, el borde se hace Rojo */
-    background: rgba(255,94,126,.07); /* Fondo rojo transparente */
-    animation: shake .35s; /* Dispara la mítica animación de temblor (headshake) que indica negación */
+    border-color: var(--accent2); background: rgba(255,94,126,.07);
+    animation: shake .35s;
   }
   @keyframes pulse-green {
-    0%,100% { transform: scale(1); } /* Inicio y fin normal */
-    50% { transform: scale(1.01); } /* A la mitad del tiempo el contenedor crece apenas 1%, dando efecto latido cardíaco */
+    0%,100% { transform: scale(1); } 50% { transform: scale(1.01); }
   }
   @keyframes shake {
-    0%,100% { transform: translateX(0); } /* Posición base */
-    20% { transform: translateX(-8px); } /* Se va a la izquierda bruscamente */
-    40% { transform: translateX(8px); } /* Rebota a la derecha bruscamente */
-    60% { transform: translateX(-5px); } /* Izquierda más corto */
-    80% { transform: translateX(5px); } /* Derecha más corto (se disipa la energía cinética simulada) */
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); } 40% { transform: translateX(8px); }
+    60% { transform: translateX(-5px); } 80% { transform: translateX(5px); }
   }
   
-  /* ---- Responsive o Media Queries ---- */
-  @media (max-width: 560px) { /* Define que todos los estilos dentro de estas llaves aplican SOLO si la pantalla del usuario mide 560 píxeles o menos de ancho (celulares) */
-    .logo-title { font-size: 1.5rem; } /* Achica la letra gigantesca del logo para que no se salga de la pantalla */
-    .action-row { justify-content: stretch; } /* Hace que la fila de botones ocupe todo el ancho estirándose y ya no se agrupen a la derecha */
-    .btn { flex: 1; justify-content: center; } /* Fuerza a que cada botón chupe una fracción igualitaria del ancho disponible (flex: 1) y centra su icono/texto internamente */
+  @media (max-width: 560px) {
+    .logo-title { font-size: 1.5rem; }
+    .action-row { justify-content: stretch; }
+    .btn { flex: 1; justify-content: center; }
   }

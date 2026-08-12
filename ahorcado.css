@@ -1,291 +1,291 @@
-:root { /* Selector que apunta al elemento raíz (HTML). Ideal para guardar variables globales de CSS */
-    --bg-main: #090d16; /* Variable personalizada (custom property) que guarda un código de color Hexadecimal oscuro */
+:root {
+    --bg-main: #090d16;
     --panel-bg: #131926;
     --neon-blue: #00f0ff;
-    --neon-magenta: #ff0055; 
-    --neon-success: #39ff14; 
-    --text-main: #f1f5f9; 
-    --text-dark: #64748b; 
-    --shadow-blur: 0 0 15px; /* Variable personalizada que guarda valores estructurales para una sombra (X, Y, Desplome) */
+    --neon-magenta: #ff0055;
+    --neon-success: #39ff14;
+    --text-main: #f1f5f9;
+    --text-dark: #64748b;
+    --shadow-blur: 0 0 15px;
 }
 
-* { /* Selector universal: aplica las siguientes reglas a todos los elementos del HTML sin excepción */
-    box-sizing: border-box; /* Fuerza a que el ancho/alto de los elementos incluya el padding y el borde (evita que se desborden) */
-    margin: 0; /* Elimina el margen exterior por defecto del navegador */
-    padding: 0; /* Elimina el relleno (margen interior) por defecto del navegador */
-    font-family: 'Courier New', Courier, monospace, system-ui; /* Define la tipografía a usar, con alternativas si la primera falla */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace, system-ui;
 }
 
-body { /* Selector de etiqueta: apunta directamente al <body> del HTML */
-    background: radial-gradient(circle at center, #161f38 0%, var(--bg-main) 100%); /* Crea un fondo con degradado circular desde el centro usando variables */
-    color: var(--text-main); /* Cambia el color del texto llamando a la variable definida en :root */
-    min-height: 100vh; /* Establece la altura mínima al 100% del alto de la ventana visible (viewport height) */
-    display: flex; /* Activa Flexbox, un modelo de diseño para acomodar elementos fácilmente */
-    justify-content: center; /* Alinea los elementos hijos de Flexbox de forma horizontal (al centro) */
-    align-items: center; /* Alinea los elementos hijos de Flexbox de forma vertical (al centro) */
-    padding: 1rem; /* Repetición: Relleno interior, pero usando 'rem' (medida relativa a la fuente raíz) */
-    overflow-x: hidden; /* Oculta cualquier contenido que se salga de la pantalla horizontalmente (evita el scroll) */
+body {
+    background: radial-gradient(circle at center, #161f38 0%, var(--bg-main) 100%);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    overflow-x: hidden;
 }
 
-.game-wrapper { /* Selector de clase: apunta a los elementos con class="game-wrapper" */
-    width: 100%; /* El elemento ocupará el 100% del ancho disponible de su padre */
-    max-width: 460px; /* Limita el crecimiento horizontal a un máximo de 460 píxeles */
-    position: relative; /* Cambia el tipo de posicionamiento para que los elementos "hijos absolutos" se ubiquen relativos a esta caja */
+.game-wrapper {
+    width: 100%;
+    max-width: 460px;
+    position: relative;
 }
 
-.game-container { /* Repetición: Selector de clase */
-    background: var(--panel-bg); /* Repetición: Fondo de color usando variable */
-    border-radius: 24px; /* Redondea las esquinas del contenedor */
-    padding: 2rem 1.5rem; /* Repetición: Relleno (arriba/abajo, izquierda/derecha) */
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05); /* Aplica sombras a la caja. Una externa y otra interna (inset) usando color RGBA (con opacidad) */
-    border: 1px solid rgba(255, 255, 255, 0.03); /* Añade un borde sólido de 1 pixel semitransparente */
-    text-align: center; /* Centra el texto que esté dentro de esta caja */
-    position: relative; /* Repetición: Posicionamiento relativo */
-    backdrop-filter: blur(10px); /* Aplica un filtro visual de desenfoque al fondo que está detrás de este elemento (efecto cristal) */
+.game-container {
+    background: var(--panel-bg);
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    text-align: center;
+    position: relative;
+    backdrop-filter: blur(10px);
 }
 
 /* Título con Estilo Cyberpunk */
-.glitch-title { /* Repetición: Selector de clase */
-    font-size: 2.2rem; /* Tamaño de la letra relativa al tamaño raíz */
-    font-weight: 900; /* Grosor de la letra (900 es muy negrita) */
-    letter-spacing: 3px; /* Añade espacio extra entre cada letra */
-    color: #fff; /* Repetición: Color de texto blanco puro */
-    text-shadow: var(--shadow-blur) rgba(0, 240, 255, 0.6); /* Añade una sombra brillante detrás del texto usando variables */
-    margin-bottom: 1.5rem; /* Añade margen exterior solo en la parte inferior */
+.glitch-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #fff;
+    text-shadow: var(--shadow-blur) rgba(0, 240, 255, 0.6);
+    margin-bottom: 1.5rem;
 }
-.glitch-title .edition { /* Selector descendente: apunta a un elemento ".edition" que esté dentro de ".glitch-title" */
-    color: var(--neon-magenta); /* Color de texto */
-    text-shadow: var(--shadow-blur) var(--neon-magenta); /* Sombra de texto */
+.glitch-title .edition {
+    color: var(--neon-magenta);
+    text-shadow: var(--shadow-blur) var(--neon-magenta);
 }
 
 /* Marcadores Modernos */
-.marcador { /* Repetición: Selector de clase */
-    display: grid; /* Activa CSS Grid, otro modelo de diseño en cuadrícula (filas y columnas) */
-    grid-template-columns: repeat(3, 1fr); /* Divide la cuadrícula en 3 columnas del mismo tamaño (1 fracción cada una) */
-    gap: 10px; /* Establece la separación o hueco entre los elementos de la cuadrícula */
-    margin-bottom: 1.5rem; /* Repetición: Margen inferior */
+.marcador {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 1.5rem;
 }
 
-.stat-box { /* Repetición: Selector de clase */
-    background: rgba(255, 255, 255, 0.02); /* Repetición: Fondo con opacidad muy baja */
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Repetición: Borde */
-    padding: 8px 4px; /* Repetición: Relleno usando píxeles */
-    border-radius: 12px; /* Repetición: Esquinas redondeadas */
-    transition: all 0.3s; /* Le dice al navegador que anime suavemente cualquier cambio (como el hover) durante 0.3 segundos */
+.stat-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 8px 4px;
+    border-radius: 12px;
+    transition: all 0.3s;
 }
-.stat-box:hover { /* Pseudo-clase: Aplica estos estilos SOLAMENTE cuando el ratón pasa por encima del elemento */
-    background: rgba(255, 255, 255, 0.04); /* Repetición: Cambio de fondo al hacer hover */
-    border-color: rgba(0, 240, 255, 0.2); /* Cambia solo el color del borde preexistente */
+.stat-box:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(0, 240, 255, 0.2);
 }
 
-.stat-label { /* Repetición: Selector de clase */
-    display: block; /* Obliga al elemento a comportarse como un bloque (ocupa toda la línea, empujando otros elementos abajo) */
-    font-size: 0.68rem; /* Repetición: Tamaño de letra pequeño */
-    color: var(--text-dark); /* Repetición: Color de texto */
-    text-transform: uppercase; /* Fuerza a que todo el texto aparezca en mayúsculas sin importar cómo se escribió en HTML */
-    margin-bottom: 4px; /* Repetición: Margen inferior */
+.stat-label {
+    display: block;
+    font-size: 0.68rem;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    margin-bottom: 4px;
 }
-.stat-num { /* Repetición: Selector de clase */
-    font-size: 1.3rem; /* Repetición: Tamaño de letra */
-    font-weight: bold; /* Repetición: Grosor de letra (negrita estándar) */
-    color: #fff; /* Repetición: Color de texto */
+.stat-num {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
 }
 
 /* Categoría */
-.categoria-container { /* Repetición: Selector de clase */
-    margin-bottom: 1.2rem; /* Repetición: Margen inferior */
+.categoria-container {
+    margin-bottom: 1.2rem;
 }
-.lbl-cat { /* Repetición: Selector de clase */
-    font-size: 0.7rem; /* Tamaño de letra */
-    color: var(--text-dark); /* Color de texto */
-    text-transform: uppercase; /* Forzar mayúsculas */
-    display: block; /*  Mostrar como bloque */
-    margin-bottom: 4px; /* Margen inferior */
+.lbl-cat {
+    font-size: 0.7rem;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
 }
-.categoria-badge { /* Repetición: Selector de clase */
-    display: inline-block; /* Se comporta como bloque (acepta padding/margin) pero no rompe la línea de texto (como inline) */
-    padding: 4px 16px; /* Repetición: Relleno */
-    background: rgba(0, 240, 255, 0.08); /* Repetición: Fondo */
-    border: 1px solid var(--neon-blue); /* Repetición: Borde */
-    color: var(--neon-blue); /* Color de texto */
-    border-radius: 8px; /* Esquinas redondeadas */
-    font-size: 0.85rem; /* Tamaño de letra */
-    font-weight: bold; /* Grosor de letra */
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.1); /* Repetición: Sombra de caja (brillo de neón exterior) */
+.categoria-badge {
+    display: inline-block;
+    padding: 4px 16px;
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
 }
 
 /* Caja del Canvas */
-.canvas-wrapper { /* Repetición: Selector de clase */
-    background: #0b0e14; /* Repetición: Fondo */
-    border-radius: 16px; /* Repetición: Esquinas redondeadas */
-    padding: 8px; /* Repetición: Relleno */
-    display: inline-block; /* Repetición: Mostrar como bloque en línea */
-    margin-bottom: 1.5rem; /* Repetición: Margen inferior */
-    border: 1px solid #222f47; /* Repetición: Borde */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Repetición de transición, pero usa una curva matemática avanzada para un efecto rebote/elástico */
+.canvas-wrapper {
+    background: #0b0e14;
+    border-radius: 16px;
+    padding: 8px;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    border: 1px solid #222f47;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-canvas { /* Repetición: Selector de etiqueta */
-    display: block; /* Repetición: Forzar a bloque (elimina pequeños espacios fantasmas que dejan las etiquetas inline como el canvas) */
+canvas {
+    display: block;
 }
 
 /* Animaciones de Alerta en la Caja del Monigote */
-.shake-error { /* Repetición: Selector de clase asignado dinámicamente desde JS */
-    animation: shake 0.4s ease-in-out, flash-red 0.4s ease-in-out; /* Ejecuta dos animaciones declaradas al final del archivo al mismo tiempo por 0.4s */
-    border-color: var(--neon-magenta); /* Repetición: Cambio de color de borde */
+.shake-error {
+    animation: shake 0.4s ease-in-out, flash-red 0.4s ease-in-out;
+    border-color: var(--neon-magenta);
 }
-.glow-victory { /* Repetición: Selector de clase dinámico */
-    border-color: var(--neon-success); /* Repetición: Cambio de color de borde */
-    box-shadow: 0 0 20px rgba(57, 255, 20, 0.3); /* Repetición: Sombra de caja */
+.glow-victory {
+    border-color: var(--neon-success);
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
 }
 
 /* Slots de las Letras de la Palabra */
-.palabra-display { /* Repetición: Selector de clase */
-    display: flex; /* Repetición: Flexbox */
-    justify-content: center; /* Repetición: Centrar hijos horizontalmente */
-    flex-wrap: wrap; /* Permite que los elementos hijos salten a la siguiente línea si no caben en el ancho disponible */
-    gap: 8px; /* Repetición: Hueco entre elementos (usado en grid y flexbox) */
-    margin-bottom: 1.5rem; /* Repetición: Margen inferior */
-    min-height: 45px; /* Altura mínima del contenedor (evita que la página "brinque" cuando no hay letras) */
+.palabra-display {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+    min-height: 45px;
 }
 
-.letra-slot { /* Repetición: Selector de clase */
-    font-size: 1.8rem; /* Repetición: Tamaño de letra */
-    font-weight: bold; /* Repetición: Grosor de letra */
-    width: 30px; /* Ancho fijo para cada guión/letra */
-    text-align: center; /* Repetición: Centrar texto */
-    border-bottom: 3px solid #2e3d56; /* Aplica borde solo en la parte inferior (crea el efecto de guión bajo) */
-    color: transparent; /* Hace que el texto interior sea invisible inicialmente */
-    transition: all 0.25s ease; /* Repetición: Transición suave lineal */
+.letra-slot {
+    font-size: 1.8rem;
+    font-weight: bold;
+    width: 30px;
+    text-align: center;
+    border-bottom: 3px solid #2e3d56;
+    color: transparent;
+    transition: all 0.25s ease;
 }
 
-.letra-slot.revelada { /* Selector encadenado: Aplica SOLO si el elemento tiene ambas clases al mismo tiempo */
-    color: #fff; /* Repetición: Color de texto visible */
-    border-bottom-color: var(--neon-blue); /* Cambia solo el color del borde inferior */
-    text-shadow: var(--shadow-blur) rgba(0, 240, 255, 0.5); /* Repetición: Sombra de texto */
-    animation: bouncePop 0.3s forwards; /* Aplica animación de rebote y 'forwards' hace que el elemento se quede en el estado final de la animación */
+.letra-slot.revelada {
+    color: #fff;
+    border-bottom-color: var(--neon-blue);
+    text-shadow: var(--shadow-blur) rgba(0, 240, 255, 0.5);
+    animation: bouncePop 0.3s forwards;
 }
 
 /* Descartadas */
-.discard-container { /* Repetición: Selector de clase */
-    margin-bottom: 1.2rem; /* Repetición: Margen inferior */
-    font-size: 0.85rem; /* Repetición: Tamaño de letra */
+.discard-container {
+    margin-bottom: 1.2rem;
+    font-size: 0.85rem;
 }
-.discard-title { color: var(--text-dark); } /* Repetición: Selector y color de texto condensado en una línea */
-.discard-list { color: var(--neon-magenta); font-weight: bold; margin-left: 6px; } /* Repetición de propiedades (color, negrita) y añade margen exterior solo a la izquierda */
+.discard-title { color: var(--text-dark); }
+.discard-list { color: var(--neon-magenta); font-weight: bold; margin-left: 6px; }
 
 /* Teclado Pro */
-.teclado { /* Repetición: Selector de clase */
-    display: grid; /* Repetición: CSS Grid */
-    grid-template-columns: repeat(7, 1fr); /* Repetición: 7 columnas idénticas */
-    gap: 6px; /* Repetición: Hueco entre botones */
-    margin-bottom: 1.5rem; /* Repetición: Margen inferior */
+.teclado {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 1.5rem;
 }
 
-.tecla { /* Repetición: Selector de clase */
-    background: #1e2638; /* Repetición: Fondo */
-    color: #cbd5e1; /* Repetición: Color de texto */
-    border: none; /* Elimina todos los bordes por defecto del botón */
-    padding: 12px 0; /* Repetición: Relleno, 12px arriba/abajo, 0 izquierda/derecha */
-    font-size: 0.95rem; /* Repetición: Tamaño de letra */
-    font-weight: bold; /* Repetición: Grosor de letra */
-    border-radius: 8px; /* Repetición: Esquinas redondeadas */
-    cursor: pointer; /* Cambia el icono del ratón a una "mano" al pasar por encima, indicando interactividad */
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Repetición: Transición suave */
+.tecla {
+    background: #1e2638;
+    color: #cbd5e1;
+    border: none;
+    padding: 12px 0;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.tecla:hover:not(:disabled) { /* Pseudo-clase compuesta: Se aplica al pasar el ratón por encima (:hover) PERO SOLO si el botón NO está deshabilitado (:not(:disabled)) */
-    background: #2b3752; /* Repetición: Fondo al hover */
-    color: #fff; /* Repetición: Color de texto al hover */
-    transform: translateY(-2px); /* Mueve visualmente el elemento 2 píxeles hacia arriba (Y negativo) */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Repetición: Sombra */
+.tecla:hover:not(:disabled) {
+    background: #2b3752;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
-.tecla:active:not(:disabled) { /* Pseudo-clase compuesta: Se aplica en el momento exacto del clic (:active) en botones no deshabilitados */
-    transform: translateY(0); /* Devuelve el botón a su posición original (simula pulsar la tecla) */
+.tecla:active:not(:disabled) {
+    transform: translateY(0);
 }
 
 /* Estados de Teclas Usadas */
-.tecla.hit { /* Repetición: Selector encadenado */
-    background: rgba(57, 255, 20, 0.15) !important; /* Repetición: Fondo. '!important' fuerza a que esta regla prevalezca sobre cualquier otra conflictiva */
-    border: 1px solid var(--neon-success); /* Repetición: Borde */
-    color: var(--neon-success) !important; /* Repetición: Color de texto forzado */
-    text-shadow: 0 0 5px var(--neon-success); /* Repetición: Sombra de texto */
-    opacity: 0.8; /* Reduce la transparencia general de todo el elemento al 80% */
+.tecla.hit {
+    background: rgba(57, 255, 20, 0.15) !important;
+    border: 1px solid var(--neon-success);
+    color: var(--neon-success) !important;
+    text-shadow: 0 0 5px var(--neon-success);
+    opacity: 0.8;
 }
-.tecla.miss { /* Repetición: Selector encadenado */
-    background: rgba(255, 0, 85, 0.1) !important; /* Repetición: Fondo forzado */
-    border: 1px solid var(--neon-magenta); /* Repetición: Borde */
-    color: var(--neon-magenta) !important; /* Repetición: Color de texto forzado */
-    opacity: 0.5; /* Repetición: Elemento a la mitad de visibilidad (50%) */
+.tecla.miss {
+    background: rgba(255, 0, 85, 0.1) !important;
+    border: 1px solid var(--neon-magenta);
+    color: var(--neon-magenta) !important;
+    opacity: 0.5;
 }
 
 /* Botón Principal */
-.btn-primary { /* Repetición: Selector de clase */
-    background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%); /* Fondo con degradado lineal en ángulo (135 grados) mezclando dos azules */
-    color: #fff; /* Repetición: Color de texto */
-    border: none; /* Repetición: Sin borde */
-    width: 100%; /* Repetición: Ancho completo */
-    padding: 14px; /* Repetición: Relleno general */
-    font-size: 1rem; /* Repetición: Tamaño de letra base */
-    font-weight: bold; /* Repetición: Grosor de letra */
-    border-radius: 12px; /* Repetición: Esquinas redondeadas */
-    cursor: pointer; /* Repetición: Cursor de mano */
-    transition: all 0.3s; /* Repetición: Transición suave */
-    box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3); /* Repetición: Sombra de botón */
+.btn-primary {
+    background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
 }
-.btn-primary:hover { /* Repetición: Selector pseudo-clase hover */
-    filter: brightness(1.1); /* Aplica un filtro gráfico que aumenta el brillo del elemento un 10% */
-    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5); /* Repetición: Sombra amplificada */
-    transform: translateY(-1px); /* Repetición: Movimiento vertical arriba */
+.btn-primary:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5);
+    transform: translateY(-1px);
 }
 
 /* Ventanas Modales */
-.modal { /* Repetición: Selector de clase */
-    position: fixed; /* Ancla el elemento relativo a la ventana del navegador (no hace scroll con el resto del sitio) */
-    top: 0; left: 0; width: 100%; height: 100%; /* Engancha el elemento a la esquina superior izquierda y hace que ocupe toda la pantalla */
-    background: rgba(5, 7, 12, 0.9); /* Repetición: Fondo negro con alta opacidad (90%) */
-    display: flex; /* Repetición: Flexbox */
-    justify-content: center; /* Repetición: Centrado horizontal Flexbox */
-    align-items: center; /* Repetición: Centrado vertical Flexbox */
-    opacity: 0; pointer-events: none; /* Lo vuelve 100% invisible y además desactiva cualquier interacción por clic (el usuario no puede tocar lo que no ve) */
-    transition: all 0.3s ease; /* Repetición: Transición */
-    z-index: 100; /* Controla la profundidad (stacking context). 100 asegura que esté por encima de todos los demás elementos */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(5, 7, 12, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 100;
 }
-.modal.show { opacity: 1; pointer-events: auto; } /* Repetición: Selector encadenado. Hace el modal visible y reactiva los clics cuando tiene la clase 'show' */
+.modal.show { opacity: 1; pointer-events: auto; }
 
-.modal-content { /* Repetición: Selector de clase */
-    background: #161e2e; /* Repetición: Fondo sólido */
-    padding: 2.5rem; /* Repetición: Relleno */
-    border-radius: 24px; /* Repetición: Bordes redondeados */
-    text-align: center; /* Repetición: Texto centrado */
-    max-width: 380px; /* Repetición: Ancho máximo */
-    width: 90%; /* Ancho responsivo del 90% (útil si la pantalla es más pequeña que 380px) */
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Repetición: Borde */
-    transform: scale(0.8); /* Encoge visualmente el elemento al 80% de su tamaño real */
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Repetición: Transición elástica */
+.modal-content {
+    background: #161e2e;
+    padding: 2.5rem;
+    border-radius: 24px;
+    text-align: center;
+    max-width: 380px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transform: scale(0.8);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.modal.show .modal-content { transform: scale(1); } /* Repetición: Selector descendente. Cuando el modal es visible, la caja interior recupera su tamaño original (100%) animadamente */
+.modal.show .modal-content { transform: scale(1); }
 
-.modal-icon { font-size: 3.5rem; margin-bottom: 1rem; } /* Repetición de propiedades básicas: tamaño enorme y margen inferior */
-.modal-content h2 { font-size: 2rem; margin-bottom: 0.5rem; } /* Repetición: Selector descendente para etiquetas h2 */
-.modal-content p { color: var(--text-dark); margin-bottom: 1.5rem; line-height: 1.4; } /* Repetición de propiedades; 'line-height' separa el espacio vertical entre líneas de texto */
+.modal-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+.modal-content h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+.modal-content p { color: var(--text-dark); margin-bottom: 1.5rem; line-height: 1.4; }
 
-.btn-modal { /* Repetición: Selector de clase */
-    background: #f1f5f9; color: #0f172a; border: none; /* Repetición: Varias propiedades en línea */
-    padding: 12px 30px; font-weight: bold; border-radius: 10px; cursor: pointer; /* Repetición */
-    transition: background 0.2s; /* Transición aplicada SOLAMENTE al cambio de color de fondo, no a todo */
+.btn-modal {
+    background: #f1f5f9; color: #0f172a; border: none;
+    padding: 12px 30px; font-weight: bold; border-radius: 10px; cursor: pointer;
+    transition: background 0.2s;
 }
-.btn-modal:hover { background: #fff; } /* Repetición: Hover básico */
+.btn-modal:hover { background: #fff; }
 
 /* Keyframes de las Animaciones Pro */
-@keyframes shake { /* Define una animación personalizada llamada 'shake' */
-    0%, 100% { transform: translateX(0); } /* Al inicio y al final (0% y 100%), el elemento está en su posición original */
-    20%, 60% { transform: translateX(-6px); } /* En estos porcentajes de tiempo, se desplaza 6 píxeles a la izquierda (X negativo) */
-    40%, 80% { transform: translateX(6px); } /* En estos porcentajes, se desplaza 6 píxeles a la derecha (X positivo), creando vibración */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
 }
-@keyframes flash-red { /* Repetición: Declaración de animación */
-    50% { background: rgba(255, 0, 85, 0.15); } /* A la mitad exacta del tiempo de animación, el fondo destella rojo */
+@keyframes flash-red {
+    50% { background: rgba(255, 0, 85, 0.15); }
 }
-@keyframes bouncePop { /* Repetición: Declaración de animación */
-    0% { transform: scale(0.6); } /* Empieza pequeño (60%) */
-    70% { transform: scale(1.15); } /* Crece más de su tamaño normal (115%) causando rebote visual */
-    100% { transform: scale(1); } /* Vuelve a su tamaño normal estable (100%) */
+@keyframes bouncePop {
+    0% { transform: scale(0.6); }
+    70% { transform: scale(1.15); }
+    100% { transform: scale(1); }
 }
