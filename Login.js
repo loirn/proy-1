@@ -23,7 +23,7 @@ function iniciarSesion() {
 
         // Redireccionamos a la página de los juegos después de 1 segundo
         setTimeout(() => {
-            window.location.href = 'index.html'; 
+            window.location.href = 'tecno.html'; 
         }, 1000);
 
     } else {
