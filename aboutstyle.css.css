@@ -1,0 +1,324 @@
+:root {
+    --bg-dark: #050810;
+    --nav-bg: rgba(5, 8, 16, 0.85);
+    --primary: #00f0ff;
+    --secondary: #ff0055;
+    --tertiary: #a855f7;
+    --text-light: #f1f5f9;
+    --card-bg: #0b1120;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* --- FONDO ANIMADO --- */
+.bg-animation {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: moveOrbs 10s infinite alternate ease-in-out;
+}
+.orb-1 { width: 300px; height: 300px; background: var(--primary); top: 10%; left: 10%; }
+.orb-2 { width: 400px; height: 400px; background: var(--tertiary); bottom: 10%; right: 10%; animation-delay: -2s; }
+.orb-3 { width: 250px; height: 250px; background: var(--secondary); top: 50%; left: 50%; animation-duration: 15s; }
+
+@keyframes moveOrbs {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, -50px) scale(1.2); }
+}
+
+/* --- NAVEGACIÓN --- */
+.navbar {
+    position: fixed;
+    top: 0; width: 100%;
+    background: var(--nav-bg);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 2px;
+}
+.logo span { color: var(--primary); }
+.logo i { color: var(--primary); margin-right: 10px; animation: pulseIcon 2s infinite; }
+
+.nav-links { list-style: none; display: flex; gap: 2rem; }
+.nav-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+.nav-links a:hover {
+    color: var(--primary);
+    text-shadow: 0 0 10px var(--primary);
+}
+
+/* --- SECCIÓN HERO --- */
+.hero-section {
+    padding: 160px 5% 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 90vh;
+}
+.hero-content { max-width: 650px; }
+.badge {
+    background: rgba(255, 0, 85, 0.1);
+    color: var(--secondary);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 1px solid var(--secondary);
+    display: inline-block;
+    margin-bottom: 25px;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.3);
+}
+
+/* ANIMACIÓN GLITCH PARA EL TÍTULO */
+.glitch-title {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 900;
+    color: #fff;
+    position: relative;
+    text-transform: uppercase;
+}
+.glitch-title .highlight {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--primary);
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+    animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { text-shadow: 0 0 15px rgba(0, 240, 255, 0.5); opacity: 1; }
+    20%, 22%, 24%, 55% { text-shadow: none; opacity: 0.5; }
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin-bottom: 40px;
+    line-height: 1.7;
+}
+
+/* BOTÓN NEÓN PRINCIPAL */
+.btn-play-main {
+    display: inline-block;
+    background: transparent;
+    color: var(--primary);
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.btn-play-main:hover {
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 30px var(--primary), inset 0 0 10px #000;
+    transform: scale(1.05);
+}
+.glow-button {
+    animation: pulseBorder 2s infinite alternate;
+}
+@keyframes pulseBorder {
+    0% { box-shadow: 0 0 10px rgba(0, 240, 255, 0.2); }
+    100% { box-shadow: 0 0 25px rgba(0, 240, 255, 0.6); }
+}
+
+/* IMAGEN FLOTANTE */
+.hologram-box {
+    width: 350px; height: 350px;
+    border: 2px dashed rgba(0, 240, 255, 0.3);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 9rem; color: var(--primary);
+    box-shadow: inset 0 0 60px rgba(0, 240, 255, 0.1), 0 0 40px rgba(0, 240, 255, 0.1);
+}
+.float-anim { animation: floatBox 4s ease-in-out infinite; }
+@keyframes floatBox {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-25px) rotate(5deg); }
+}
+
+/* --- SECCIÓN TARJETAS (MINIJUEGOS) --- */
+.games-section { padding: 50px 5% 100px; position: relative; z-index: 2; }
+.section-title { text-align: center; margin-bottom: 60px; }
+.section-title h2 { font-size: 2.8rem; text-transform: uppercase; }
+.section-title span { color: var(--primary); }
+.section-title p { color: #94a3b8; margin-top: 10px; font-size: 1.1rem; }
+
+.cards-grid {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+.game-card {
+    flex: 1 1 260px;
+    max-width: 320px;
+    /* ...el resto de las propiedades igual que antes... */
+}
+
+.game-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.card-glow-bg {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: radial-gradient(circle, rgba(0,240,255,0.2) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+    z-index: -1;
+    border-radius: 50%;
+}
+.game-card:hover {
+    transform: translateY(-15px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 40px rgba(0, 240, 255, 0.2);
+}
+.game-card:hover .card-glow-bg { width: 300px; height: 300px; }
+
+.card-icon {
+    font-size: 3.5rem;
+    margin-bottom: 25px;
+    height: 90px; width: 90px;
+    line-height: 90px;
+    border-radius: 20%;
+    margin: 0 auto 25px;
+    background: rgba(255,255,255,0.02);
+    transition: 0.3s;
+}
+.game-card:hover .card-icon { transform: scale(1.1) rotate(5deg); }
+
+.ahorcado-icon { color: var(--secondary); box-shadow: inset 0 0 20px rgba(255, 0, 85, 0.1); }
+.tic-icon { color: #39ff14; box-shadow: inset 0 0 20px rgba(57, 255, 20, 0.1); }
+.trivia-icon { color: var(--tertiary); box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.1); }
+
+.game-card h3 { font-size: 1.6rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+.game-card p { font-size: 0.95rem; color: #94a3b8; margin-bottom: 30px; line-height: 1.5; }
+
+.play-tag {
+    font-weight: bold;
+    color: var(--primary);
+    font-size: 1rem;
+    opacity: 0;
+    transition: 0.4s;
+    transform: translateY(20px);
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.game-card:hover .play-tag { opacity: 1; transform: translateY(0); }
+
+footer {
+    text-align: center; padding: 30px; background: #03050a; color: #475569;
+    border-top: 1px solid rgba(0, 240, 255, 0.1); font-weight: bold;
+}
+
+/* --- SECCIÓN ABOUT US (SOBRE NOSOTROS) --- */
+.about-hero {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    min-height: 60vh;
+}
+.about-hero .hero-content {
+    max-width: 800px;
+}
+.about-hero p {
+    margin: 0 auto;
+}
+
+.about-text {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 0 5%;
+}
+
+/* Iconos de las tarjetas de creadores, usando la misma paleta que ahorcado/tic/trivia */
+.creator-icon-1 { color: var(--primary); box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.1); }
+.creator-icon-2 { color: var(--secondary); box-shadow: inset 0 0 20px rgba(255, 0, 85, 0.1); }
+.creator-icon-3 { color: var(--tertiary); box-shadow: inset 0 0 20px rgba(168, 85, 247, 0.1); }
+
+/* Rol del creador debajo del nombre, en el color de acento de su tarjeta */
+.creator-role {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: block;
+}
+.creator-role.role-1 { color: var(--primary); }
+.creator-role.role-2 { color: var(--secondary); }
+.creator-role.role-3 { color: var(--tertiary); }
+
+/* --- CLASES DE ENTRADA AL CARGAR LA PÁGINA --- */
+.slide-down { animation: slideDown 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.fade-up { animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.delay-1 { animation-delay: 0.3s; }
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
