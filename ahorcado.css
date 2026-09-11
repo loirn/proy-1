@@ -289,3 +289,31 @@ canvas {
     70% { transform: scale(1.15); }
     100% { transform: scale(1); }
 }
+
+/* ---- Botón volver a tecno.html ---- */
+.back-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background: var(--panel-bg);
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    transition: all 0.25s;
+}
+.back-btn:hover {
+    color: var(--neon-blue);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+}
+@media (max-width: 560px) {
+    .back-btn { top: 12px; right: 12px; padding: 8px 12px; font-size: 0.78rem; }
+}
