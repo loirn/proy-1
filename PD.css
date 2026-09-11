@@ -231,6 +231,43 @@
     20% { transform: translateX(-8px); } 40% { transform: translateX(8px); }
     60% { transform: translateX(-5px); } 80% { transform: translateX(5px); }
   }
+
+  /* ---- Botón volver a tecno.html ---- */
+  .back-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .55rem 1.1rem;
+    background: var(--surface2);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: .85rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: transform .1s, filter .15s, color .15s, border-color .15s;
+  }
+  .back-btn:hover {
+    color: #000;
+    background: var(--accent);
+    border-color: var(--accent);
+    filter: brightness(1.05);
+  }
+  .back-btn:active { transform: scale(.96); }
+
+  @media (max-width: 560px) {
+    .back-btn {
+      top: 12px;
+      right: 12px;
+      padding: .45rem .85rem;
+      font-size: .78rem;
+    }
+  }
   
   @media (max-width: 560px) {
     .logo-title { font-size: 1.5rem; }
